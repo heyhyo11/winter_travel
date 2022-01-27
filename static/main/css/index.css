@@ -20,10 +20,11 @@ body {
   background-color: #f5f8fd;
   justify-content: space-between;
   z-index: 999;
+  align-items: center;
 }
 
 .header_container .header_wrap .header_left #logo {
-  width: 100px;
+  width: 300px;
   margin-left: 120px;
   cursor: pointer;
 }
