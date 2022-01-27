@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link href="{% static 'main/css/index.css' %}" rel="stylesheet" type="text/css">
+    <!-- 파비콘 -->
+    <link rel="shortcut icon" href="{% static 'main/image/favicon.png' %}" type="image/x-icon">
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!-- 폰트어썸 -->
+    <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <title>Winter</title>
+</head>
+<body>
+    {% include 'main/header.html' %}
+    <main class="main_container">
+        {% include 'main/side.html' %}
+        <div class="main_wrap">
+            <div class="main_content">
+                <div class="main_header">
+                    <img src="{% static 'main/image/1.png' %}" alt="">
+                    <img src="{% static 'main/image/2.png' %}" alt="">
+                    <img src="{% static 'main/image/3.png' %}" alt="">
+                    <img src="{% static 'main/image/4.png' %}" alt="">
+                    <img src="{% static 'main/image/5.png' %}" alt="">
+                    <img src="{% static 'main/image/6.png' %}" alt="">
+
+                </div>
+                <div class="main_hot">
+                    <h1>HOT</h1>
+                    <hr>
+                    <div class="hot_card">
+                        <img class="card_img" src="{% static 'main/image/1.png' %}" >                        <img class="card_img" src="{% static 'main/image/2.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/3.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/4.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/5.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/6.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/7.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/8.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/9.png' %}" >
+                    </div>
+                </div>
+                <div class="main_top100">
+                    <h1>TOP100</h1>
+                    <hr>
+                    <div class="top100_card">
+                        <img class="card_img" src="{% static 'main/image/1.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/2.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/3.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/4.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/5.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/6.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/7.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/8.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/9.png' %}" >
+                    </div>
+                </div>
+                <div class="recommand">
+                    <h1>recommand</h1>
+                    <hr>
+                    <div class="recommand_card">
+                        <img class="card_img" src="{% static 'main/image/1.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/2.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/3.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/4.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/5.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/6.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/7.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/8.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/9.png' %}" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+<script src='{% static 'main/js/index.js' %}'></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</body>
+</html>
