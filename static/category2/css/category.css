@@ -1,0 +1,128 @@
+/* Body */
+
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    top: 0;
+    left: 0;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: inherit;
+}
+
+.body-container {
+    position: relative;
+    display: block;
+    margin: 0% auto auto;
+    border: none;
+    width: 1440px;
+    height: 1900px;
+    top:100px;
+    left: 0;
+    background-color: #f5f8fd;
+}
+
+.top-container {
+    position: absolute;
+    width: 100%;
+    height: 35%;
+    top: 0;
+    left: 0;
+}
+
+.top-container img {
+    width: 100%;
+    filter: brightness(60%);
+
+}
+
+.tags-container {
+    position: absolute;
+    top: 10%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+    width: 56%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tags-container .tag {
+    color: #f5f8fd;
+    border-radius: 50px;
+    border: 2px solid #f5f8fd;
+    width: 16%;
+    font-size: 17pt;
+    text-align: center;
+    cursor: pointer;
+}
+
+.top-container>h2 {
+    position: absolute;
+	top: 38%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+    font-size: 50pt;
+    color: #f5f8fd;
+}
+
+.top-container p {
+    position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+    color: #f5f8fd;
+    font-size:13pt;
+}
+
+.bottom-container {
+    position: absolute;
+    top: 35%;
+    width: 100%;
+    height: 65%;
+}
+
+.bottom-container .theme01 {
+    height: 20%;
+}
+
+.bottom-container .inner {
+    display: flex;
+    flex-direction: row;
+}
+
+.bottom-container .inner .icon-img {
+    width: 8%;
+}
+
+.bottom-container .inner .title-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-container .inner .title-box>h2 {
+
+}
+
+.bottom-container .inner .title-box>p {
+
+}
+
+.article{
+    height: 30%;
+}
+
+.caption {
+
+}
+
+.caption.h3 {
+
+}
+
+.caption.p {
+
+}
