@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    background-color: #f5f8fd;
+}
+
+#main {
+    margin: auto;
+    width: 700px;
+}
+
+#main #my-keyword{
+    height: 400px;
+}
+
+#main #my-keyword #tag-box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#main #my-keyword .tag {
+    background-color: white;
+    display:inline-block;
+    vertical-align: middle;
+    padding: 3px 7px;
+    margin: 7px;
+    border-radius: 10px 10px;
+    box-shadow: 0 2px 2px 0 gray;
+}
+
+#main #my-like #like-box {
+    background-color: #cfd3dc;
+    height: 100px;
+}
+
+#main #my-like #like-box .like img{
+    width: 100px;
+    height: 100px;
+}
