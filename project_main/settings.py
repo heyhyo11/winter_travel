@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+import json
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%=6t*dk*@05k2bif5^0o$gn_2+ct78pclop49vx*htu)iuzk99'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -38,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_extensions',
     'main_page',
+    'storages',
+    'news',
 ]
 
 MIDDLEWARE = [
@@ -78,11 +80,14 @@ WSGI_APPLICATION = 'project_main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'winter',
+        'USER': 'admin',
+        'PASSWORD': 'winterproject',
+        'HOST': 'database-1.cudljsclqczn.ap-northeast-2.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -135,4 +140,17 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     STATIC_DIR
 ]
+
 STATIC_ROOT = os.path.join(BASE_DIR, '.static_root')
+
+# AWS
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+with open(os.path.join(BASE_DIR, 'project_main/config/aws.json')) as f:
+    secrets = json.loads(f.read())
+
+AWS_ACCESS_KEY_ID = secrets['AWS']['ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = secrets['AWS']['SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = secrets['AWS']['STORAGE_BUCKET_NAME']
+AWS_DEFAULT_ACL = 'public-read' 
