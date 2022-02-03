@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin: 150px 0;
     background-color: #f5f8fd;
 }
 
@@ -26,14 +26,36 @@ body {
     margin: 7px;
     border-radius: 10px 10px;
     box-shadow: 0 2px 2px 0 gray;
+    cursor: pointer;
 }
 
 #main #my-like #like-box {
+    display: flex;
     background-color: #cfd3dc;
-    height: 100px;
+    height: 150px;
+    /*cursor: pointer;*/
 }
 
-#main #my-like #like-box .like img{
-    width: 100px;
-    height: 100px;
+#main #my-like #like-box:hover {
+    background-color: #a5b8d9;
+}
+
+#main #my-like #like-box img{
+    width: 150px;
+    height: 150px;
+}
+
+#main #my-like #like-box #like-contents{
+    margin-left: 15px;
+}
+
+#main #my-like #like-box #like-contents #like-icon{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#main #my-like #like-box #like-icon a{
+    display: flex;
+    margin: 5px;
+    align-content: flex-end;
 }

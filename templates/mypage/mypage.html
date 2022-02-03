@@ -5,18 +5,17 @@
     <title>MyPage</title>
 
     <link rel="stylesheet" href="/static/mypage/css/mypage.css">
+
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script src="/static/mypage/js/mypage.js"></script>
 
 </head>
 <body>
 <div id="main">
-    <nav>
-
-    </nav>
     <div id="my-keyword">
         <h2>나의 키워드</h2>
         <div id="tag-box">
-            <div class="tag">
+            <div class="tag" onclick="location.href=''">
                 #여행지
             </div>
             <div class="tag">
@@ -59,24 +58,29 @@
                 #제주도
             </div>
         </div>
-
-
     </div>
     <div id="my-like">
         <h2>내가 찜한 여행지</h2>
-        <div id="like-box">
-            <div class="like">
-                <img src="/static/mypage/image/eurp.jpg"/>
-                <div class="like-contents">
-
-                </div>
+        <div id="like-box" onclick="location.href=''">
+            <img src="/static/mypage/image/eurp.jpg"/>
+            <div id="like-contents">
+                <a><strong>제목</strong></a>
+                <p>내용이다아아아아아아아아아아아아아아아아아아아아아아아아아</p>
             </div>
-
+            <div id="like-icon">
+                <a href="">
+                    <i class="fas fa-share-square"></i>
+                </a>
+                <a href="">
+                    <i class="far fa-copy"></i>
+                </a>
+                <a href="">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
         </div>
 
-
     </div>
-
 </div>
 </body>
 </html>
