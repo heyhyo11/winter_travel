@@ -8,11 +8,11 @@ body {
     width: 700px;
 }
 
-#main #my-keyword{
+#main #my-keyword {
     height: 400px;
 }
 
-#main #my-keyword #tag-box{
+#main #my-keyword #tag-box {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -29,33 +29,45 @@ body {
     cursor: pointer;
 }
 
-#main #my-like #like-box {
-    display: flex;
+#main #my-like #like-box:nth-child(even) {
     background-color: #cfd3dc;
+    display: flex;
     height: 150px;
-    /*cursor: pointer;*/
+    margin-top: 20px;
 }
 
-#main #my-like #like-box:hover {
+#main #my-like #like-box:nth-child(odd) {
     background-color: #a5b8d9;
+    display: flex;
+    height: 150px;
+    margin-top: 20px;
 }
 
-#main #my-like #like-box img{
+#main #my-like #like-box img {
     width: 150px;
     height: 150px;
+    cursor: pointer;
 }
 
-#main #my-like #like-box #like-contents{
-    margin-left: 15px;
+#main #my-like #like-box #like-contents {
+    padding-left: 15px;
+    width: 430px;
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 20px;
+    max-height: 120px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    cursor: pointer;
+    border-bottom: 1px #443d35;
 }
 
-#main #my-like #like-box #like-contents #like-icon{
+#main #my-like #like-box #like-icon {
     display: flex;
-    flex-direction: row-reverse;
-}
-
-#main #my-like #like-box #like-icon a{
-    display: flex;
-    margin: 5px;
-    align-content: flex-end;
+    position: relative;
+    width: 90px;
+    top: 115px;
+    justify-content: space-between;
 }
