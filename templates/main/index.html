@@ -19,9 +19,9 @@
     <title>Winter</title>
 </head>
 <body>
-    {% include 'main/header.html' %}
+    {% include 'header.html' %}
     <main class="main_container">
-        {% include 'main/side.html' %}
+        {% include 'side.html' %}
         <div class="main_wrap">
             <div class="main_content">
                 <div class="main_header">
@@ -37,7 +37,8 @@
                     <h1>HOT</h1>
                     <hr>
                     <div class="hot_card">
-                        <img class="card_img" src="{% static 'main/image/1.png' %}" >                        <img class="card_img" src="{% static 'main/image/2.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/1.png' %}" >
+                        <img class="card_img" src="{% static 'main/image/2.png' %}" >
                         <img class="card_img" src="{% static 'main/image/3.png' %}" >
                         <img class="card_img" src="{% static 'main/image/4.png' %}" >
                         <img class="card_img" src="{% static 'main/image/5.png' %}" >
@@ -82,7 +83,6 @@
     </main>
 
 
-<script src='{% static 'main/js/index.js' %}'></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
