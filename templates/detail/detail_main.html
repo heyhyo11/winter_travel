@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style>
+        body {
+            margin: 0;
+
+        }
+
+        .container {
+            margin: 0;
+            height: 100vh;
+            display: grid;
+
+        }
+
+        .containerA {
+            font-size: 11px;
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+        }
+
+        .Acontent {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+
+        }
+
+        .title-picture {
+            height: 360px;
+            width: 540px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background: gray;
+
+        }
+
+        .title-picture input[id*="slide"] {
+            display: none;
+        }
+
+        .title-picture .slidewrap {
+            max-width: 540px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .title-picture .slidelist {
+            /*자동 줄바꿈 속성을 없애줌*/
+            white-space: nowrap;
+            font-size: 0;
+        }
+
+        .title-picture .slidelist>li {
+            display: inline-block;
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
+            /*슬라이더가 자연스럽게 넘어가기위해 transition을 사용*/
+            /*5s는 넘어가는 속도를 뜻함*/
+            transition: all.5s;
+        }
+
+        .title-picture .slidelist>li>a {
+            display: block;
+            position: relative;
+        }
+
+        .title-picture>li>a img {
+            width: 100%;
+
+        }
+
+
+        .title-picture .slidelist label {
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 50px;
+            cursor: pointer;
+        }
+
+        .small-pictures-container {
+            width: 540px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .small-picture {
+            background: gray;
+            width: 170px;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .small-picture>img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+
+        }
+
+        .content {
+            margin-left: 10px;
+            background: lemonchiffon;
+            width: 500px;
+            height: 520px;
+            border: 4px dotted black;
+            border-radius: 20px;
+        }
+
+        .containerB {
+            justify-content: center;
+            /*background: crimson;*/
+            display: flex;
+
+
+        }
+
+        .map {
+
+            display: grid;
+            justify-content: center;
+            margin: 20px;
+            background: #746f6b;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+        }
+
+        .maps {
+            width: 1050px;
+            height: 300px;
+
+        }
+
+        .map>p {
+            color: #f5f8fd;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            font-size: 2rem;
+
+        }
+
+        .MapTest {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+
+        .containerC {
+
+            display: flex;
+            justify-content: center;
+            /*background: gold;*/
+        }
+
+        .weatherList {
+            display: flex;
+            white-space:nowrap;
+            overflow-x:scroll;
+            border: 3px solid black;
+            width: 1050px;
+            margin: 30px;
+
+        }
+
+        .weathers {
+            width: 150px;
+            display: grid;
+            padding: 10px;
+
+        }
+
+        .weathers>p {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .weatherImg {
+            display: flex;
+            justify-content: center;
+            height: 20px;
+            width: 20px
+        }
+
+        .weatherImg>img {
+            width: 100px;
+            /*box-shadow: 4px 4px rgba(0, 0, 0, 0.25);*/
+        }
+
+        .containerD {
+            height: 25vh;
+            background: hotpink;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="containerA">
+            <h1>관광지 이름</h1>
+            <div class="Acontent">
+                <div style="display: grid">
+                    <div class="title-picture">
+                        <!-- 부트스트랩 슬라이더 시작 -->
+                        <!-- checked - 첫번째값에 클릭을 해줘야되기때문에 사용함 -->
+                        <input type="radio" name="slide" id="slide01" checked>
+                        <input type="radio" name="slide" id="slide02">
+                        <input type="radio" name="slide" id="slide03">
+
+                        <div class="slidewrap">
+                            <ul class="slidelist">
+                                <li>
+                                    <!-- a - a태그를 통해 링크를 이동할수있음 -->
+                                    <a>
+                                        <label for="slide03" class="left"></label>
+                                        <!-- <img src="../static/img/african-lion-2888519.jpg"> -->
+                                        <label for="slide02" class="right"></label>
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a>
+                                        <label for="slide01" class="left"></label>
+                                        <!-- <img src="../static/img/dolphin-203875.jpg"> -->
+                                        <label for="slide03" class="right"></label>
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a>
+                                        <label for="slide02" class="left"></label>
+                                        <!-- <img src="../static/img/iceland-1979445.jpg"> -->
+                                        <label for="slide01" class="right"></label>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="small-pictures-container">
+                        <div class="small-picture">
+                            <!-- <img src="../static/img/cat-551554.jpg" style="height: 100%; width: 100%"> -->
+                        </div>
+                        <div class="small-picture">
+                            <!-- <img src="../static/img/cat-551554.jpg" style="height: 100%; width: 100%"> -->
+                        </div>
+                        <div class="small-picture">
+                            <!-- <img src="../static/img/cat-551554.jpg" style="height: 100%; width: 100%"> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+
+                </div>
+            </div>
+        </div>
+        <div class="containerB">
+            <div class="map">
+                <p>관광지 위치</p>
+                <div class="maps">
+                    {% block body %}
+                    {% include 'detail/detail_sub/map.html' %}
+                    {% endblock %}
+                </div>
+            </div>
+            <!-- <div class="map">
+            <a>관광지 코스추천</a>
+            <img class="MapTest" src="/static/img/maptest.png">
+        </div> -->
+        </div>
+        <div class="containerC">
+            <div>
+                <h1>(관광지)의 날씨</h1>
+                <div class="weatherList">
+                    {% block A %}
+                    {% include 'detail/detail_sub/weather.html' %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="containerD">
+
+        </div>
+    </div>
+
+</body>
+
+</html>
