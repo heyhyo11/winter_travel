@@ -5,22 +5,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 폰트어썸 -->
+    <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
+
+
 
     <style>
-        body {
-            margin: 0;
-
+        body{
+            display: flex;
+            justify-content: center;
         }
 
         .container {
-            margin: 0;
+            margin-top: 100px;
+            width: 100vw;
             height: 100vh;
             display: grid;
-
+            max-width:1100px;
         }
 
         .containerA {
             font-size: 11px;
+            width: 100%;
         }
 
         h1 {
@@ -29,56 +35,20 @@
         }
 
         .Acontent {
-            display: flex;
+            display: flex;;
             justify-content: center;
-            padding: 20px;
-
+            width: 100%;
         }
 
         .title-picture {
-            height: 360px;
-            width: 540px;
+            height: 300px;
+            width: 450px;
             margin-bottom: 20px;
             border-radius: 10px;
             background: gray;
-
+            margin: 20px;
         }
 
-        .title-picture input[id*="slide"] {
-            display: none;
-        }
-
-        .title-picture .slidewrap {
-            max-width: 540px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .title-picture .slidelist {
-            /*자동 줄바꿈 속성을 없애줌*/
-            white-space: nowrap;
-            font-size: 0;
-        }
-
-        .title-picture .slidelist>li {
-            display: inline-block;
-            vertical-align: middle;
-            width: 100%;
-            height: 100%;
-            /*슬라이더가 자연스럽게 넘어가기위해 transition을 사용*/
-            /*5s는 넘어가는 속도를 뜻함*/
-            transition: all.5s;
-        }
-
-        .title-picture .slidelist>li>a {
-            display: block;
-            position: relative;
-        }
-
-        .title-picture>li>a img {
-            width: 100%;
-
-        }
 
 
         .title-picture .slidelist label {
@@ -90,34 +60,14 @@
             cursor: pointer;
         }
 
-        .small-pictures-container {
-            width: 540px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .small-picture {
-            background: gray;
-            width: 170px;
-            height: 150px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .small-picture>img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-
-        }
-
         .content {
             margin-left: 10px;
             background: lemonchiffon;
-            width: 500px;
-            height: 520px;
+            width: 400px;
+            height: 300px;
             border: 4px dotted black;
             border-radius: 20px;
+            margin: 20px;
         }
 
         .containerB {
@@ -140,7 +90,7 @@
         }
 
         .maps {
-            width: 1050px;
+            width: 900px;
             height: 300px;
 
         }
@@ -162,7 +112,7 @@
 
 
         .containerC {
-
+            width: 100%;
             display: flex;
             justify-content: center;
             /*background: gold;*/
@@ -181,6 +131,7 @@
         .weathers {
             width: 150px;
             display: grid;
+            justify-content: center;
             padding: 10px;
 
         }
@@ -194,12 +145,13 @@
         .weatherImg {
             display: flex;
             justify-content: center;
-            height: 20px;
-            width: 20px
+            height:100px;
+            width: 100px;
         }
 
         .weatherImg>img {
-            width: 100px;
+            margin: 0%;
+            padding: 0%;
             /*box-shadow: 4px 4px rgba(0, 0, 0, 0.25);*/
         }
 
@@ -214,63 +166,18 @@
 </head>
 
 <body>
+{% include 'header.html' %}
+{% include 'side.html' %}
     <div class="container">
         <div class="containerA">
-            <h1>관광지 이름</h1>
+            <h1>{{ title }}</h1>
             <div class="Acontent">
-                <div style="display: grid">
+                <div>
                     <div class="title-picture">
-                        <!-- 부트스트랩 슬라이더 시작 -->
-                        <!-- checked - 첫번째값에 클릭을 해줘야되기때문에 사용함 -->
-                        <input type="radio" name="slide" id="slide01" checked>
-                        <input type="radio" name="slide" id="slide02">
-                        <input type="radio" name="slide" id="slide03">
-
-                        <div class="slidewrap">
-                            <ul class="slidelist">
-                                <li>
-                                    <!-- a - a태그를 통해 링크를 이동할수있음 -->
-                                    <a>
-                                        <label for="slide03" class="left"></label>
-                                        <!-- <img src="../static/img/african-lion-2888519.jpg"> -->
-                                        <label for="slide02" class="right"></label>
-                                    </a>
-                                </li>
-                                <li>
-
-                                    <a>
-                                        <label for="slide01" class="left"></label>
-                                        <!-- <img src="../static/img/dolphin-203875.jpg"> -->
-                                        <label for="slide03" class="right"></label>
-                                    </a>
-                                </li>
-                                <li>
-
-                                    <a>
-                                        <label for="slide02" class="left"></label>
-                                        <!-- <img src="../static/img/iceland-1979445.jpg"> -->
-                                        <label for="slide01" class="right"></label>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-                    <div class="small-pictures-container">
-                        <div class="small-picture">
-                            <!-- <img src="../static/img/cat-551554.jpg" style="height: 100%; width: 100%"> -->
-                        </div>
-                        <div class="small-picture">
-                            <!-- <img src="../static/img/cat-551554.jpg" style="height: 100%; width: 100%"> -->
-                        </div>
-                        <div class="small-picture">
-                            <!-- <img src="../static/img/cat-551554.jpg" style="height: 100%; width: 100%"> -->
-                        </div>
                     </div>
                 </div>
                 <div class="content">
-
+                    <div>주소: {{ address }}</div>
                 </div>
             </div>
         </div>
@@ -290,7 +197,7 @@
         </div>
         <div class="containerC">
             <div>
-                <h1>(관광지)의 날씨</h1>
+                <h1>{{ title }}의 날씨</h1>
                 <div class="weatherList">
                     {% block A %}
                     {% include 'detail/detail_sub/weather.html' %}

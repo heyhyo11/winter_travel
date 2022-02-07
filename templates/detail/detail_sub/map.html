@@ -23,7 +23,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_b9fbdbf66e0f4c178986db46749c1e02 {
+                #map_12a6fc7faefe44b29d8c3f7bab754067 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -34,16 +34,16 @@
         
 </head>
 <body>    
-            
-            <div class="folium-map" id="map_b9fbdbf66e0f4c178986db46749c1e02" ></div>
+    
+            <div class="folium-map" id="map_12a6fc7faefe44b29d8c3f7bab754067" ></div>
         
 </body>
 <script>    
     
-            var map_b9fbdbf66e0f4c178986db46749c1e02 = L.map(
-                "map_b9fbdbf66e0f4c178986db46749c1e02",
+            var map_12a6fc7faefe44b29d8c3f7bab754067 = L.map(
+                "map_12a6fc7faefe44b29d8c3f7bab754067",
                 {
-                    center: [35.167107, 129.167743],
+                    center: [{{x_address}}, {{y_address}}],
                     crs: L.CRS.EPSG3857,
                     zoom: 15,
                     zoomControl: true,
@@ -55,32 +55,32 @@
 
         
     
-            var tile_layer_f975d07a17ab4555af73403dd3e8bfa2 = L.tileLayer(
+            var tile_layer_e3b16f27a36242a38df500ffd99348af = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_b9fbdbf66e0f4c178986db46749c1e02);
+            ).addTo(map_12a6fc7faefe44b29d8c3f7bab754067);
         
     
-            var marker_4a9e827af4164315b4cbd144c5d0a30b = L.marker(
-                [35.167107, 129.167743],
+            var marker_63d22c36269e4d098d723aa01b4a3e1a = L.marker(
+                [{{x_address}}, {{y_address}}],
                 {}
-            ).addTo(map_b9fbdbf66e0f4c178986db46749c1e02);
+            ).addTo(map_12a6fc7faefe44b29d8c3f7bab754067);
         
     
-            var icon_17595da7fd9440f5a89fb3d2d8a3e6c6 = L.AwesomeMarkers.icon(
+            var icon_a8618379fcac46a382c06082b7faeaf4 = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "star", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
             );
-            marker_4a9e827af4164315b4cbd144c5d0a30b.setIcon(icon_17595da7fd9440f5a89fb3d2d8a3e6c6);
+            marker_63d22c36269e4d098d723aa01b4a3e1a.setIcon(icon_a8618379fcac46a382c06082b7faeaf4);
         
     
-        var popup_539a65584f92416abaec84308c3bc1bd = L.popup({"maxWidth": "100%"});
+        var popup_496c69e611a04e7e90f6ec35e29e490a = L.popup({"maxWidth": "100%"});
 
         
-            var html_ee741ec3f551478dbcca40edb08eb934 = $(`<div id="html_ee741ec3f551478dbcca40edb08eb934" style="width: 100.0%; height: 100.0%;">해운대</div>`)[0];
-            popup_539a65584f92416abaec84308c3bc1bd.setContent(html_ee741ec3f551478dbcca40edb08eb934);
+            var html_33523b7dcd7c458f921e1da372f3b428 = $(`<div id="html_33523b7dcd7c458f921e1da372f3b428" style="width: 100.0%; height: 100.0%;">해운대</div>`)[0];
+            popup_496c69e611a04e7e90f6ec35e29e490a.setContent(html_33523b7dcd7c458f921e1da372f3b428);
         
 
-        marker_4a9e827af4164315b4cbd144c5d0a30b.bindPopup(popup_539a65584f92416abaec84308c3bc1bd)
+        marker_63d22c36269e4d098d723aa01b4a3e1a.bindPopup(popup_496c69e611a04e7e90f6ec35e29e490a)
         ;
 
         
