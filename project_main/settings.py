@@ -41,7 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storages',
     'detail',
-    
+    # 유저
+    'user',
+    # 소셜 로그인
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.github',
+
 ]
 
 MIDDLEWARE = [
@@ -152,3 +162,52 @@ AWS_ACCESS_KEY_ID = secrets['AWS']['ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = secrets['AWS']['SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = secrets['AWS']['STORAGE_BUCKET_NAME']
 AWS_DEFAULT_ACL = 'public-read'
+
+
+# user 앱
+AUTH_USER_MODEL = 'user.UserModel'
+
+# 소셜 로그인
+SITE_ID = 1     # 사이트 설정에 필요한 변수
+
+AUTHENTICATION_BACKENDS = (
+    # allauth와 관계없이 django-admin에서 username으로 로그인
+    'django.contrib.auth.backends.ModelBackend',
+    # allauth 인증 방법 (ex. email로 로그인)
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+LOGIN_REDIRECT_URL = '/'                # 로그인 성공 시 리다이렉트할 페이지
+ACCOUNT_LOGOUT_REDIRECT_URL = '/account/login'  # 로그아웃 후 리다이렉트할 페이지
+
+ACCOUNT_LOGOUT_ON_GET = True             # /account/logout 페이서 추가적으로 버튼 클릭할 것 없이 자동으로 로그아웃 시켜줌
+SOCIALACCOUNT_LOGIN_ON_GET = True        # 바로 구글/카카오 계정 연결하는 페이지로 넘어감 (False로 하면 /account/kakao/login 페이지가 나옴)
+
+ACCOUNT_EMAIL_REQUIRED = True            # 회원 가입시 email은 필수 입력
+ACCOUNT_USERNAME_REQUIRED = True         # 회원 가입시 username은 필수 입력
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # 로그인 인증 방법 : 이메일
+ACCOUNT_EMAIL_VERIFICATION = "none"      # 이메일 유효성 인증 사용 안함
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": "104758601108-t2dvrpe1486k3tjuau81f8nt2rinjrkh.apps.googleusercontent.com",
+            "secret": "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",
+            "key": ""
+        }
+    },
+    "kakao": {
+        "APP": {
+            "client_id": "bbadf3bef8eadc2f7e3f62e4d1014c75",
+            "secret": "",
+            "key": ""
+        }
+    },
+    "github": {
+        "APP": {
+            "client_id": "511f439400dbbcf91596",
+            "secret": "eb5a900902ce61ac203128d65d5c35696b9b9c4b",
+            "key": ""
+        }
+    }
+}
