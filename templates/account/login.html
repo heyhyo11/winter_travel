@@ -12,31 +12,28 @@
     {% load account socialaccount %}
 </head>
 <body>
+{% include 'header.html' %}
+{% include 'side.html' %}
     <div class="container">
         <div class="img-box">
             <img src="/static/image/hiking.png"/>
         </div>
         <div class="wrapper">
-            <div class="header">
-                <p class="header-left">로그인</p>
-                <button class="header-right" onclick="location.href='/account/signup/'">
+            <div class="wrapper-title">
+                <p class="wrapper-title-left">로그인</p>
+                <button class="wrapper-title-right" onclick="location.href='/account/signup/'">
                     회원가입
                 </button>
             </div>
 
-            <div class="body">
+            <div class="form-box">
                 <form class="login" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
                     <input type="email" name="login" placeholder="이메일 (trip@example.com)" autocomplete="email" required=""
                            id="id_login">
                     <input type="password" name="password" placeholder="비밀번호" autocomplete="current-password" required=""
                            id="id_password">
-{#                    {% if error %}#}
-{#                        <div class="error" role="alert">#}
-{#                            {{ error }}#}
-{#                        </div>#}
-{#                    {% endif %}#}
-                    <button class="btn" type="submit">{% trans "Sign In" %}</button>
+                    <button class="btn" type="submit">{% trans "Sign In" %} &raquo;</button>
                 </form>
 
                 <div class="social-box">

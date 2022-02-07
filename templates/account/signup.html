@@ -12,29 +12,26 @@
     {% load account socialaccount %}
 </head>
 <body>
+{% include 'header.html' %}
+{% include 'side.html' %}
     <div class="container">
         <div class="img-box">
             <img src="/static/image/map.png"/>
         </div>
         <div class="wrapper">
-            <div class="header">
-                <p class="header-left">회원가입</p>
-                <button class="header-right" onclick="location.href='/account/login/'">
+            <div class="wrapper-title">
+                <p class="wrapper-title-left">회원가입</p>
+                <button class="wrapper-title-right" onclick="location.href='/account/login/'">
                     로그인
                 </button>
             </div>
-            <div class="body">
+            <div class="form-box">
                 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
                     {% csrf_token %}
                     <input type="text" name="username" placeholder="사용자 이름" autocomplete="username" minlength="1" maxlength="150" required="" id="id_username">
                     <input type="email" name="email" placeholder="이메일 (trip@example.com)" autocomplete="email" required="" id="id_email">
                     <input type="password" name="password1" placeholder="비밀번호 (8자 이상)" autocomplete="new-password" required="" id="id_password1">
                     <input type="password" name="password2" placeholder="비밀번호 확인" required="" id="id_password2">
-{#                    {% if error %}#}
-{#                        <div class="error" role="alert">#}
-{#                            {{ error }}#}
-{#                        </div>#}
-{#                    {% endif %}#}
                     <button class="btn" type="submit">{% trans "Sign Up" %} &raquo;</button>
                 </form>
 
