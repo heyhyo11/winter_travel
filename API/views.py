@@ -14,8 +14,8 @@ headers = {
 url = 'https://kr.trip.com/travel-guide/south-korea-100042/'
 page = requests.get(url, headers=headers)
 soup = BeautifulSoup(page.content, 'html.parser')
-max_location = int(soup.select('#__next > div:nth-child(2) > div > div.jsx-808517774.pagination-container.tc > div > ul > li ')[-1].text)
-# max_location = 3
+# max_location = int(soup.select('#__next > div:nth-child(2) > div > div.jsx-808517774.pagination-container.tc > div > ul > li ')[-1].text)
+max_location = 1
 
 # 지역구하기
 
@@ -37,29 +37,29 @@ def location(max_location):
 # 카테고리별 주소, 마지막페이지 구하기
 
 def category_list(code):
-    category = [f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-1003/",     # 건축 & 랜드마크
-            f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-1005/",         # 전시관
-            f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-1000/",         # 공원
-            f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-1002/",         # 유적지
-            f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-169/",          # 자연
-            f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-1017/",         # 라이프스타일
-            f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-77/",           # 종교 성지
-            f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-1004/",         # 전통/민속 체험
-            f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-27/",           # 관광 투어
-            f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-1016/",]        # 스포츠
-    category_length = []        
-    for i in category:
-        page = requests.get(i, headers=headers)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        # last_page = int(soup.select_one('#list > div.gl-poi-list_page > div > div > ul > li:nth-last-child(1) > a').text)
-        last_page = soup.select('#list > div.gl-poi-list_page > div > div > ul > li > a')
-        try:
-            last_page = int(last_page[-1].text)
-        except IndexError:
-            print(last_page)
-            print(i)
-        category_length.append(last_page)
-        
+    if code == '234':
+        category = [f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-1003/",     # 건축 & 랜드마크
+                f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-1005/",         # 전시관
+                f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-1000/",         # 공원
+                f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-1002/",         # 유적지
+                f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-169/",          # 자연
+                f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-1017/",         # 라이프스타일
+                f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-77/",           # 종교 성지
+                f"https://kr.trip.com/travel-guide/city-{code}/tourist-attractions/type-27/",           # 관광 투어
+                    ]        
+        category_length = []        
+        for i in category:
+            page = requests.get(i, headers=headers)
+            soup = BeautifulSoup(page.content, 'html.parser')
+            # last_page = int(soup.select_one('#list > div.gl-poi-list_page > div > div > ul > li:nth-last-child(1) > a').text)
+            last_page = soup.select('#list > div.gl-poi-list_page > div > div > ul > li > a')
+            try:
+                last_page = int(last_page[-1].text)
+            except IndexError:
+                print(last_page)
+                print(i)
+            category_length.append(last_page)
+
     return list(zip(category, category_length))
 
 
@@ -81,7 +81,7 @@ def category_page_list(urls,length, location, category):
 
 
 # 카테고리별 데이터 뽑기
-category = ['랜드마크','전시관','공원','유적지','자연','라이프스타일','성지','전통','관광투어','스포츠']
+category = ['랜드마크','전시관','공원','유적지','자연','라이프스타일','성지','관광투어',]
 
 def area_data(location_info):
     
@@ -89,7 +89,8 @@ def area_data(location_info):
         print(f'{location_info[i][0]}href 주소 입력중...')
         
         category_href = category_list(location_info[i][1])
-        for j in range(len(category)):
+
+        for j in range(7,len(category)):
             category_page_list(category_href[j][0], category_href[j][1], location_info[i][0], category[j])
     return True
 
@@ -135,7 +136,8 @@ def find_item(category,url):
     except IndexError:
         return
     location = json.loads(script)['props']['pageProps']['appData']['overviewData']['districtInfo']['districtName']
-
+    if location != '서울':
+        return
     title = json.loads(script)['props']['pageProps']['appData']['overviewData']['basicInfo']['poiName']
     db_serach = db_insert.objects.filter(title=title)
     if db_serach:
@@ -145,8 +147,8 @@ def find_item(category,url):
     except KeyError:
         tags = []
 
-    img = json.loads(script)['props']['pageProps']['appData']['overviewData']['imageInfo']['imageList'][:4]
-    
+    img = json.loads(script)['props']['pageProps']['appData']['overviewData']['imageInfo']['imageList']
+    img = img[0]
         
     address = json.loads(script)['props']['pageProps']['appData']['overviewData']['basicInfo']['address']
 #
@@ -174,7 +176,7 @@ def find_item(category,url):
 
 # Create your views here.
 
-# def data_insert(request):
-    # location_info = location(max_location)
-    # data = area_data(location_info)
-    # return render(request, 'news/result.html',{'msg':'hello'})
+def data_insert(request):
+    location_info = location(max_location)
+    data = area_data(location_info)
+    return render(request, 'news/result.html',{'msg':'hello'})
