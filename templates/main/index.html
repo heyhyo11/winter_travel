@@ -8,7 +8,7 @@
     <!-- CSS -->
     <link href="{% static 'main/css/index.css' %}" rel="stylesheet" type="text/css">
     <!-- 파비콘 -->
-    <link rel="shortcut icon" href="{% static 'main/image/favicon.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'image/favicon.png' %}" type="image/x-icon">
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!-- 폰트어썸 -->
@@ -19,9 +19,9 @@
     <title>Winter</title>
 </head>
 <body>
-    {% include 'main/header.html' %}
+    {% include 'header.html' %}
     <main class="main_container">
-        {% include 'main/side.html' %}
+        {% include 'side.html' %}
         <div class="main_wrap">
             <div class="main_content">
                 <div class="main_header">
@@ -82,7 +82,6 @@
     </main>
 
 
-<script src='{% static 'main/js/index.js' %}'></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
