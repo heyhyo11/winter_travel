@@ -1,11 +1,15 @@
 from django.db import models
 
-# Create your models here.
+# class Img(models.Model):
+#     class Meta:
+#         db_table ='img'
+#     Img = models.FileField(upload_to='uploads/%Y%m%d')
+#     Img_url = models.CharField(max_length=250)
 
 
-class db_insert(models.Model):
+class db_search(models.Model):
     class Meta:
-        db_table = 'data_1'
+        db_table ='data_1'
     location = models.CharField(max_length=50, null=False)
     category = models.CharField(max_length=50, null=False)
     title = models.CharField(max_length=255, unique=True)
