@@ -6,6 +6,8 @@ import random
 from django.contrib.auth.decorators import login_required
 import re
 import pandas as pd
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 def main(request):
@@ -81,5 +83,26 @@ def user_view_in(request, id):
                 df = pd.concat([df, df_temp])
             else:
                 df = df_temp
-    print(df)
+
+    # user별로 지역에 부여한 count 값을 볼 수 있도록 pivot table 사용
+    title_user = df.pivot_table('count', index='userid', columns='category')
+
+    # NaN 값은 그냥 0이라고 부여
+    title_user = title_user.fillna(0)
+
+    # 유저 1~610 번과 유저 1~610 번 간의 코사인 유사도를 구함
+    user_based_collab = cosine_similarity(title_user, title_user)
+
+    # 위는 그냥 numpy 행렬이니까, 이를 데이터프레임으로 변환
+    user_based_collab = pd.DataFrame(user_based_collab, index=title_user.index,
+                                              columns=title_user.index)
+
+    print(user_based_collab)
+
+    similar_user = user_based_collab[user_id.id].sort_values(ascending=False)[:2].index[1].tolist()
+
+    similar_user_views = user_view.objects.get(user_id=similar_user).user_view.split(',')
+
+    print(similar_user_views)
+
     return redirect('/')
