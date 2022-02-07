@@ -14,15 +14,15 @@ headers = {
 url = 'https://kr.trip.com/travel-guide/south-korea-100042/'
 page = requests.get(url, headers=headers)
 soup = BeautifulSoup(page.content, 'html.parser')
-# max_location = int(soup.select('#__next > div:nth-child(2) > div > div.jsx-808517774.pagination-container.tc > div > ul > li ')[-1].text)
-max_location = 3
+max_location = int(soup.select('#__next > div:nth-child(2) > div > div.jsx-808517774.pagination-container.tc > div > ul > li ')[-1].text)
+# max_location = 3
 
 # 지역구하기
 
 def location(max_location):
     location = []
     location_code = []
-    for i in range(2, max_location+1):
+    for i in range(1, max_location+1):
         url = f'https://kr.trip.com/travel-guide/south-korea-100042/{i}/'
         page = requests.get(url, headers=headers)
         soup = BeautifulSoup(page.content, 'html.parser')
@@ -30,6 +30,7 @@ def location(max_location):
         for i in range(len(name)):
             location.append(name[i].text)
             location_code.append(name[i].get('href').split('/')[-2].split('-')[-1])
+
     return list(zip(location, location_code))
     
 
@@ -173,7 +174,7 @@ def find_item(category,url):
 
 # Create your views here.
 
-def data_insert(request):
-    location_info = location(max_location)
-    data = area_data(location_info)
-    return render(request, 'news/result.html',{'msg':'hello'})
+# def data_insert(request):
+    # location_info = location(max_location)
+    # data = area_data(location_info)
+    # return render(request, 'news/result.html',{'msg':'hello'})
