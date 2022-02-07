@@ -37,11 +37,11 @@
                     <h1>HOT</h1>
                     <hr>
                     <div class="hot_card">
-                        {% for i in datas %}
+                        {% for i in hot %}
                             {% if user.is_authenticated %}
-                            <img src="{{i.img}}" onclick='window.location.href = "/view/{{ i.id }}"'>
+                            <img src="{{i.item.img}}" onclick='window.location.href = "/view/{{ i.item.id }}"'>
                             {% else %}
-                            <img src="{{i.img}}" onclick='window.location.href = "/account/login/"'>
+                            <img src="{{i.item.img}}" onclick='window.location.href = "/account/login/"'>
                             {% endif %}
                         {% endfor %}
                 
@@ -51,30 +51,26 @@
                     <h1>TOP100</h1>
                     <hr>
                     <div class="top100_card">
-                        <img class="card_img" src="{% static 'main/image/1.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/2.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/3.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/4.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/5.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/6.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/7.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/8.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/9.png' %}" >
+                        {% for i in top100 %}
+                            {% if user.is_authenticated %}
+                            <img class="card_img" src="{{i.item.img}}" onclick='window.location.href = "/view/{{ i.item.id }}"'>
+                            {% else %}
+                            <img class="card_img" src="{{i.item.img}}" onclick='window.location.href = "/account/login/"'>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="recommand">
                     <h1>recommand</h1>
                     <hr>
                     <div class="recommand_card">
-                        <img class="card_img" src="{% static 'main/image/1.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/2.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/3.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/4.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/5.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/6.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/7.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/8.png' %}" >
-                        <img class="card_img" src="{% static 'main/image/9.png' %}" >
+                        {% for img,id in recommand %}
+                            {% if user.is_authenticated %}
+                            <img class="card_img" src="{{img}}" onclick='window.location.href = "/view/{{ id }}"'>
+                            {% else %}
+                            <img class="card_img" src="{{img}}" onclick='window.location.href = "/account/login/"'>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>

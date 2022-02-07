@@ -1,6 +1,6 @@
 from unicodedata import category
 from django.shortcuts import redirect, render
-from .models import user_view
+from .models import user_view, top100_view, hot_view
 from API.models import db_insert
 import random
 from django.contrib.auth.decorators import login_required
@@ -9,19 +9,70 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
+def recommand(user):
+    user_id = user
+    user_views = user_view.objects.all()
+    df = None
+    for i in user_views:
+        category = re.sub('[^가-핳,]','',i.category)
+        category_count = re.sub('[^0-9,]','',i.category_count)
+        category = category.split(',')
+        category_count = category_count.split(',')
+        userid = i.user_id
+        for j in range(len(category)):
+            df_temp = pd.DataFrame({
+            'category':category[j],
+            'count':category_count[j],
+            'userid' : userid
+            }, index = [0])
+            if df is not None:
+                df = pd.concat([df, df_temp])
+            else:
+                df = df_temp
+
+    # user별로 지역에 부여한 count 값을 볼 수 있도록 pivot table 사용
+    title_user = df.pivot_table('count', index='userid', columns='category')
+
+    # NaN 값은 그냥 0이라고 부여
+    title_user = title_user.fillna(0)
+
+    # 유저 1~610 번과 유저 1~610 번 간의 코사인 유사도를 구함
+    user_based_collab = cosine_similarity(title_user, title_user)
+
+    # 위는 그냥 numpy 행렬이니까, 이를 데이터프레임으로 변환
+    user_based_collab = pd.DataFrame(user_based_collab, index=title_user.index,
+                                            columns=title_user.index)
+
+    print(user_based_collab)
+
+    similar_user = user_based_collab[user_id.id].sort_values(ascending=False)[:2].index[1].tolist()
+
+    similar_user_views = user_view.objects.get(user_id=similar_user).user_view.split(',')
+    result = []
+    if len(similar_user_views) > 15:
+        for i in range(15):
+            img = db_insert.objects.get(id=int(similar_user_views[i])).img
+            img = (img,similar_user_views[i])
+            result.append(img)
+    else:
+        for i in range(len(similar_user_views)):
+            img = db_insert.objects.get(id=int(similar_user_views[i])).img
+            img = (img,similar_user_views[i])
+            result.append(img)
+        
+    return result
 
 def main(request):
-    data = db_insert.objects.all()
-    data_dict = []
-    for i in range(10):
-        rand = random.randrange(len(data))
-        d = data[rand]
-        data_dict.append(d)
+    top100 = top100_view.objects.all().order_by('-view_count')
+    hot = hot_view.objects.all().order_by('-hot_count')
+    user = request.user
+    recommand_user = recommand(user)
     return render(
         request,
         'main/index.html',
-        {'datas':data_dict}
+        {'top100':top100,'recommand':recommand_user, 'hot':hot}
     )
+
 
 @login_required
 def user_view_in(request, id):
@@ -65,44 +116,28 @@ def user_view_in(request, id):
             user_check.user_view = ','.join(user_view_list)
             user_check.save()
 
-    user_views = user_view.objects.all()
-    df = None
-    for i in user_views:
-        category = re.sub('[^가-핳,]','',i.category)
-        category_count = re.sub('[^0-9,]','',i.category_count)
-        category = category.split(',')
-        category_count = category_count.split(',')
-        userid = i.user_id
-        for j in range(len(category)):
-            df_temp = pd.DataFrame({
-            'category':category[j],
-            'count':category_count[j],
-            'userid' : userid
-            }, index = [0])
-            if df is not None:
-                df = pd.concat([df, df_temp])
-            else:
-                df = df_temp
+    try:
+        view_count = top100_view.objects.get(item_id=id)
+    except:
+        view_count = top100_view.objects.create(
+            item_id = id,
+            view_count = 1
+        )
+    else:
+        count = view_count.view_count + 1
+        view_count.view_count = count
+        view_count.save()
 
-    # user별로 지역에 부여한 count 값을 볼 수 있도록 pivot table 사용
-    title_user = df.pivot_table('count', index='userid', columns='category')
-
-    # NaN 값은 그냥 0이라고 부여
-    title_user = title_user.fillna(0)
-
-    # 유저 1~610 번과 유저 1~610 번 간의 코사인 유사도를 구함
-    user_based_collab = cosine_similarity(title_user, title_user)
-
-    # 위는 그냥 numpy 행렬이니까, 이를 데이터프레임으로 변환
-    user_based_collab = pd.DataFrame(user_based_collab, index=title_user.index,
-                                              columns=title_user.index)
-
-    print(user_based_collab)
-
-    similar_user = user_based_collab[user_id.id].sort_values(ascending=False)[:2].index[1].tolist()
-
-    similar_user_views = user_view.objects.get(user_id=similar_user).user_view.split(',')
-
-    print(similar_user_views)
+    try:
+        view_count = hot_view.objects.get(item_id=id)
+    except:
+        view_count = hot_view.objects.create(
+            item_id = id,
+            hot_count = 1
+        )
+    else:
+        count = view_count.hot_count + 1
+        view_count.hot_count = count
+        view_count.save()
 
     return redirect('/')

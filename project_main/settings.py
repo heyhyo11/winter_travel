@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.github',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -211,3 +212,7 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+CRONJOBS = [
+    ('0 */1 * * *', 'API.cron.hot_item_reset', '>> reset.log')
+]
