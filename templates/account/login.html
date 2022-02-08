@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>로그인</title>
+
+    {% load static %}
+    <link href="{% static 'css/account/base.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/account/login.css' %}" rel="stylesheet" type="text/css">
+    {% load i18n %}
+    {% load account socialaccount %}
+</head>
+<body>
+
+{% include 'header.html' %}
+    <div class="container">
+        <div class="img-box">
+            <img src="{% static 'image/hiking.png' %}"/>
+        </div>
+        <div class="wrapper">
+            <div class="wrapper-title">
+                <p class="wrapper-title-left">로그인</p>
+                <button class="wrapper-title-right" onclick="location.href='/account/signup/'">
+                    회원가입
+                </button>
+            </div>
+            <div class="form-box">
+                <form class="login" method="POST" action="{% url 'account_login' %}">
+                    {% csrf_token %}
+                    <input type="email" name="login" placeholder="이메일 (trip@example.com)" autocomplete="email" required=""
+                           id="id_login">
+                    <input type="password" name="password" placeholder="비밀번호" autocomplete="current-password" required=""
+                           id="id_password">
+                    <button class="btn" type="submit">{% trans "Sign In" %} &raquo;</button>
+                </form>
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert-error">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert-error">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="social-box">
+                    <div class="with-sns">
+                        <span class="bar bar-left"></span>
+                        <p class="login">다른 서비스 계정으로 로그인</p>
+                        <span class="bar bar-right"></span>
+                    </div>
+                    <div class="social-btn">
+                        <ul>
+                            <li>
+                                <a title="Kakao" class="socialaccount_provider kakao"
+                                   href="/account/kakao/login">
+                                    <img src="{% static 'image/kakao.png' %}"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Google" class="socialaccount_provider google"
+                                   href="/account/google/login">
+                                    <img src="{% static 'image/google.png' %}"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a title="GitHub" class="socialaccount_provider github"
+                                   href="/account/github/login">
+                                    <img src="{% static 'image/github.png' %}"/>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
