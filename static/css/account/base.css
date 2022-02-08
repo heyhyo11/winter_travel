@@ -177,13 +177,7 @@ ul li:nth-child(3) a img {
     width: 98%;
     height: 100%;
 }
-<<<<<<< HEAD
 
-.error {
-    width: 80%;
-    height: 30px;
-    margin: 10px auto;
-=======
 .alert-error {
     width: 80%;
     text-align: left;
@@ -192,5 +186,4 @@ ul li:nth-child(3) a img {
 .alert-error strong{
     color: red;
     text-decoration-line: underline;
->>>>>>> a7cc9a5b41863820fa0deb8a30070982954babfc
 }

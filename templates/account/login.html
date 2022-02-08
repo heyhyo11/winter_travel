@@ -6,14 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>로그인</title>
-<<<<<<< HEAD
-    <link rel="stylesheet" href="/static/css/account/base.css"/>
-    <link rel="stylesheet" href="/static/css/account/login.css"/>
-=======
     {% load static %}
     <link href="{% static 'css/account/base.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/account/login.css' %}" rel="stylesheet" type="text/css">
->>>>>>> a7cc9a5b41863820fa0deb8a30070982954babfc
     {% load i18n %}
     {% load account socialaccount %}
 </head>
@@ -21,11 +16,7 @@
 {% include 'header.html' %}
     <div class="container">
         <div class="img-box">
-<<<<<<< HEAD
-            <img src="/static/image/hiking.png"/>
-=======
             <img src="{% static 'image/hiking.png' %}"/>
->>>>>>> a7cc9a5b41863820fa0deb8a30070982954babfc
         </div>
         <div class="wrapper">
             <div class="wrapper-title">
@@ -34,10 +25,6 @@
                     회원가입
                 </button>
             </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> a7cc9a5b41863820fa0deb8a30070982954babfc
             <div class="form-box">
                 <form class="login" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
@@ -47,9 +34,6 @@
                            id="id_password">
                     <button class="btn" type="submit">{% trans "Sign In" %} &raquo;</button>
                 </form>
-<<<<<<< HEAD
-
-=======
                 {% if form.errors %}
                     {% for field in form %}
                         {% for error in field.errors %}
@@ -64,7 +48,6 @@
                         </div>
                     {% endfor %}
                 {% endif %}
->>>>>>> a7cc9a5b41863820fa0deb8a30070982954babfc
                 <div class="social-box">
                     <div class="with-sns">
                         <span class="bar bar-left"></span>
@@ -76,31 +59,19 @@
                             <li>
                                 <a title="Kakao" class="socialaccount_provider kakao"
                                    href="/account/kakao/login">
-<<<<<<< HEAD
-                                    <img src="/static/image/kakao.png"/>
-=======
                                     <img src="{% static 'image/kakao.png' %}"/>
->>>>>>> a7cc9a5b41863820fa0deb8a30070982954babfc
                                 </a>
                             </li>
                             <li>
                                 <a title="Google" class="socialaccount_provider google"
                                    href="/account/google/login">
-<<<<<<< HEAD
-                                    <img src="/static/image/google.png"/>
-=======
                                     <img src="{% static 'image/google.png' %}"/>
->>>>>>> a7cc9a5b41863820fa0deb8a30070982954babfc
                                 </a>
                             </li>
                             <li>
                                 <a title="GitHub" class="socialaccount_provider github"
                                    href="/account/github/login">
-<<<<<<< HEAD
-                                    <img src="/static/image/github.png"/>
-=======
                                     <img src="{% static 'image/github.png' %}"/>
->>>>>>> a7cc9a5b41863820fa0deb8a30070982954babfc
                                 </a>
                             </li>
                         </ul>
