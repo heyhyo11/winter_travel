@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main_page',
     'storages',
-
     'category2',
     'API',
 
