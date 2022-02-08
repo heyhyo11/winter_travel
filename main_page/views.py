@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 import re
 import pandas as pd
 import numpy as np
+import random
 from sklearn.metrics.pairwise import cosine_similarity
 
 def recommand(user):
@@ -48,19 +49,62 @@ def recommand(user):
     similar_user = user_based_collab[user_id.id].sort_values(ascending=False)[:2].index[1].tolist()
 
     similar_user_views = user_view.objects.get(user_id=similar_user).user_view.split(',')
+    
     result = []
-    if len(similar_user_views) > 15:
-        for i in range(15):
-            img = db_insert.objects.get(id=int(similar_user_views[i])).img
-            img = (img,similar_user_views[i])
+    num = []
+    id = []
+    # 유사도 높은 유저 리스트 랜덤 5개
+    if len(similar_user_views) > 5:
+        for i in range(5):
+            rand = random.randrange(0,len(similar_user_views))
+            while rand in num:
+                rand = random.randrange(0,len(similar_user_views))
+            img = db_insert.objects.get(id=int(similar_user_views[rand])).img
+            img = (img,similar_user_views[rand])
             result.append(img)
+            num.append(rand)
+            id.append(similar_user_views[rand])
     else:
         for i in range(len(similar_user_views)):
-            img = db_insert.objects.get(id=int(similar_user_views[i])).img
-            img = (img,similar_user_views[i])
+            rand = random.randrange(0,len(similar_user_views))
+            while rand in num:
+                rand = random.randrange(0,len(similar_user_views))
+            img = db_insert.objects.get(id=int(similar_user_views[rand])).img
+            img = (img,similar_user_views[rand])
             result.append(img)
-        
+            num.append(rand)
+            id.append(similar_user_views[rand])
+
+    num = []
+    # 마지막 카테고리 5개
+    last_category = user_view.objects.get(user_id=user_id.id).last_view_category
+    rand_category = db_insert.objects.filter(category=last_category)
+    for i in range(len(rand_category)):
+        if i > 4:
+            break
+        else:
+            rand = random.randrange(0, len(rand_category))
+            while rand in num and str(rand_category[rand].id) not in id:
+                rand = random.randrange(0, len(rand_category))
+            img = (rand_category[rand].img, rand_category[rand].id)
+            result.append(img)
+            num.append(img)
+            id.append(rand_category[rand].id)
+    
+    num = []
+    # 랜덤 5개
+    items = db_insert.objects.all()
+    for i in range(5):
+        rand = random.randrange(0, len(items))
+        while rand in num and str(items[rand].id) not in id:
+            rand = random.randrange(0, len(items))
+        img = (items[rand].img, items[rand].id)
+        result.append(img)
+        num.append(img)
+        id.append(items[rand].id)
+
     return result
+
 
 def main(request):
     top100 = top100_view.objects.all().order_by('-view_count')
@@ -91,6 +135,7 @@ def user_view_in(request, id):
             category = category,
             category_count = category_count,
             user_view = view_list,
+            last_view_category = item_category
         )
     else:
         category = re.sub('[^가-핳,]','',user_check.category)
@@ -114,6 +159,7 @@ def user_view_in(request, id):
             user_check.category = ','.join(category)
             user_check.category_count = ','.join(category_count)
             user_check.user_view = ','.join(user_view_list)
+            user_check.last_view_category = item_category
             user_check.save()
 
     try:
