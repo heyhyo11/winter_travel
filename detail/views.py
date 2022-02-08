@@ -7,8 +7,12 @@ import requests
 from django.shortcuts import render
 from django.template.defaulttags import register
 from .models import db_insert
+from .models import db_recommend
+import re
+import pandas as pd
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
 
-# Create your views here.
 
 def detail_view(request):
     
@@ -260,3 +264,57 @@ def thismap(request):
 
 def pictures(request):
     return render(request, 'detail/test.html')
+
+
+def recommand(user):
+    user_id = user
+    user_views = db_recommend.objects.all()
+    df = None
+    for i in user_views:
+        category = re.sub('[^가-핳,]', '', i.category)
+        category_count = re.sub('[^0-9,]', '', i.category_count)
+        category = category.split(',')
+        category_count = category_count.split(',')
+        userid = i.user_id
+        for j in range(len(category)):
+            df_temp = pd.DataFrame({
+                'category': category[j],
+                'count': category_count[j],
+                'userid': userid
+            }, index=[0])
+            if df is not None:
+                df = pd.concat([df, df_temp])
+            else:
+                df = df_temp
+
+    # user별로 지역에 부여한 count 값을 볼 수 있도록 pivot table 사용
+    title_user = df.pivot_table('count', index='category', columns='userid')
+
+    # NaN 값은 그냥 0이라고 부여
+    title_user = title_user.fillna(0)
+
+    # 유저 1~610 번과 유저 1~610 번 간의 코사인 유사도를 구함
+    user_based_collab = cosine_similarity(title_user, title_user)
+
+    # 위는 그냥 numpy 행렬이니까, 이를 데이터프레임으로 변환
+    user_based_collab = pd.DataFrame(user_based_collab, index=title_user.index,
+                                     columns=title_user.index)
+
+    print(user_based_collab)
+
+    similar_user = user_based_collab[user_id.id].sort_values(ascending=False)[:2].index[1].tolist()
+
+    similar_user_views = db_recommend.objects.get(user_id=similar_user).user_view.split(',')
+    result = []
+    if len(similar_user_views) > 5:
+        for i in range(5):
+            img = db_insert.objects.get(id=int(similar_user_views[i])).img
+            img = (img, similar_user_views[i])
+            result.append(img)
+    else:
+        for i in range(len(similar_user_views)):
+            img = db_insert.objects.get(id=int(similar_user_views[i])).img
+            img = (img, similar_user_views[i])
+            result.append(img)
+
+    return result
