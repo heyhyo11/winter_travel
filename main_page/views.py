@@ -9,7 +9,10 @@ def main(request):
     user = request.user
     user_login_check = request.user.is_authenticated
     top100 = top100_view.objects.all().order_by('-view_count')
+    
     hot = hot_view.objects.all().order_by('-hot_count')
+    if len(hot) < 5:
+        hot = top100[:5]
     if user_login_check:
         recommand_user = recommand(user)
     else:
