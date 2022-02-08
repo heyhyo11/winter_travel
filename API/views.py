@@ -77,7 +77,7 @@ def user_view_in(request, id):
         view_count.hot_count = count
         view_count.save()
 
-    return redirect('/')
+    return redirect(f'/detail/{id}')
 
 
 # ============================ 추천 시스템 ======================

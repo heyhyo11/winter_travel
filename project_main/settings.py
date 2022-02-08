@@ -42,8 +42,6 @@ INSTALLED_APPS = [
     'main_page',
     'storages',
     'API',
-    'detail',
-
     # 유저
     'user',
     # 소셜 로그인
@@ -54,7 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.github',
-
+    'django_crontab',
 ]
 
 
@@ -223,7 +221,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 CRONJOBS = [
-    ('0 */1 * * *', 'API.cron.hot_item_reset', '>> reset.log')
+    ('0 */1 * * *', 'API.cron.hot_item_reset')
 ]
 
 
