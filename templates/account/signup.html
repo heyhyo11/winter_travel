@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>회원가입</title>
+    {% load static %}
+    <link href="{% static 'css/account/base.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/account/signup.css' %}" rel="stylesheet" type="text/css">
+    {% load i18n %}
+    {% load account socialaccount %}
+</head>
+<body>
+{% include 'header.html' %}
+    <div class="container">
+        <div class="img-box">
+            <img src="{% static 'image/map.png' %}"/>
+        </div>
+        <div class="wrapper">
+            <div class="wrapper-title">
+                <p class="wrapper-title-left">회원가입</p>
+                <button class="wrapper-title-right" onclick="location.href='/account/login/'">
+                    로그인
+                </button>
+            </div>
+            <div class="form-box">
+                <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+                    <input type="text" name="username" placeholder="사용자 이름" autocomplete="username" minlength="1" maxlength="150" required="" id="id_username">
+                    <input type="email" name="email" placeholder="이메일 (trip@example.com)" autocomplete="email" required="" id="id_email">
+                    <input type="password" name="password1" placeholder="비밀번호 (8자 이상, 문자+숫자)" autocomplete="new-password" required="" id="id_password1">
+                    <input type="password" name="password2" placeholder="비밀번호 확인" required="" id="id_password2">
+                    <button class="btn" type="submit">{% trans "Sign Up" %} &raquo;</button>
+                </form>
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert-error">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert-error">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="social-box">
+                    <div class="with-sns">
+                        <span class="bar bar-left"></span>
+                        <p class="signup">다른 서비스 계정으로 시작하기</p>
+                        <span class="bar bar-right"></span>
+                    </div>
+                    {% get_providers as socialaccount_providers %}
+                    <div class="social-btn">
+                        <ul>
+                            <li>
+                                <a title="Kakao" class="socialaccount_provider kakao"
+                                   href="/account/kakao/login">
+                                    <img src="{% static 'image/kakao.png' %}"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Google" class="socialaccount_provider google"
+                                   href="/account/google/login">
+                                    <img src="{% static 'image/google.png' %}"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a title="GitHub" class="socialaccount_provider github"
+                                   href="/account/github/login">
+                                    <img src="{% static 'image/github.png' %}"/>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
