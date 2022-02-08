@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main_page',
     'storages',
-    # 'news',
+    'API',
     'detail',
+
     # 유저
     'user',
     # 소셜 로그인
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.github',
+
 ]
 
 
@@ -93,7 +95,7 @@ WSGI_APPLICATION = 'project_main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'winter',
+        'NAME': 'winter_project',
         'USER': 'admin',
         'PASSWORD': 'winterproject',
         'HOST': 'database-1.cudljsclqczn.ap-northeast-2.rds.amazonaws.com',
@@ -219,4 +221,9 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+CRONJOBS = [
+    ('0 */1 * * *', 'API.cron.hot_item_reset', '>> reset.log')
+]
+
 
