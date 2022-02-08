@@ -13,6 +13,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 def recommand(user):
     user_id = user
     user_views = user_view.objects.all()
+    print(user_view)
     df = None
     for i in user_views:
         category = re.sub('[^가-핳,]','',i.category)

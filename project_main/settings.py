@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'main_page',
     'storages',
     'API',
-        # 유저
+    # 유저
     'user',
     # 소셜 로그인
     'django.contrib.sites',
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.github',
     'django_crontab',
+
 ]
 
 MIDDLEWARE = [
@@ -162,7 +163,7 @@ with open(os.path.join(BASE_DIR, 'project_main/config/aws.json')) as f:
 AWS_ACCESS_KEY_ID = secrets['AWS']['ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = secrets['AWS']['SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = secrets['AWS']['STORAGE_BUCKET_NAME']
-AWS_DEFAULT_ACL = 'public-read' 
+AWS_DEFAULT_ACL = 'public-read'
 
 
 # user 앱
@@ -212,7 +213,7 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-
 CRONJOBS = [
     ('0 */1 * * *', 'API.cron.hot_item_reset', '>> reset.log')
 ]
+
