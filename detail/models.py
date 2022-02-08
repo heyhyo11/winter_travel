@@ -15,6 +15,7 @@ class db_insert(models.Model):
     y_address = models.CharField(max_length=50)
     content = models.TextField(null=False, max_length=2500)
 
+
 class db_recommend(models.Model):
     class Meta:
         db_table = 'user_view'

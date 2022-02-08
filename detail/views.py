@@ -264,8 +264,8 @@ def pictures(request):
     return render(request, 'detail/test.html')
 
 
-def recommand(user):
-    user_id = user
+def recommand(request):
+    user_id = request.user
     user_views = db_recommend.objects.all()
     df = None
     for i in user_views:
@@ -292,15 +292,15 @@ def recommand(user):
     title_user = title_user.fillna(0)
 
     # 유저 1~610 번과 유저 1~610 번 간의 코사인 유사도를 구함
-    user_based_collab = cosine_similarity(title_user, title_user)
+    item_based_collab = cosine_similarity(title_user, title_user)
 
     # 위는 그냥 numpy 행렬이니까, 이를 데이터프레임으로 변환
-    user_based_collab = pd.DataFrame(user_based_collab, index=title_user.index,
+    item_based_collab = pd.DataFrame(item_based_collab, index=title_user.index,
                                      columns=title_user.index)
 
-    print(user_based_collab)
+    print(item_based_collab)
 
-    similar_user = user_based_collab[user_id.id].sort_values(ascending=False)[:2].index[1].tolist()
+    similar_user = item_based_collab[user_id.id].sort_values(ascending=False)[:2].index[1].tolist()
 
     similar_user_views = db_recommend.objects.get(user_id=similar_user).user_view.split(',')
     result = []
