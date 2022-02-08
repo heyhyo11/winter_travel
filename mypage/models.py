@@ -9,3 +9,5 @@ class user_view(models.Model):
     user_view = models.TextField(max_length=5000)
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE, unique=True)
     last_view_category = models.CharField(max_length=50)
+
+

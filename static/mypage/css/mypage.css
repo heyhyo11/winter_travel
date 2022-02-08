@@ -10,7 +10,7 @@ body {
 }
 
 #main #my-keyword {
-    height: 300px;
+    height: 150px;
 }
 
 #main #my-keyword #tag-box {
@@ -27,7 +27,6 @@ body {
     margin: 7px;
     border-radius: 10px 10px;
     box-shadow: 0 2px 2px 0 gray;
-    cursor: pointer;
 }
 
 #main #my-like #like-box:nth-child(even) {
