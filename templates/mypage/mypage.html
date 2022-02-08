@@ -26,12 +26,13 @@
         </div>
     </div>
     <div id="my-like">
-        <h2>내가 찜한 여행지</h2>
+        <h2>둘러본 여행지</h2>
+        {% for img,title,address in record %}
         <div id="like-box" onclick="location.href=''">
-            <img src="/static/mypage/image/eurp.jpg"/>
+            <img src="{{img}}"/>
             <div id="like-contents">
-                <h4>제목</h4>
-                <p>내용이다아아아아아아아아아아아아아아아아아아아아아아아이다아아아아아아아아아아아아아아아아아아아아아이다아아아아아아아아아아아아아아아이다아아아아아아아아아아아아아아아아</p>
+                <h4>{{title}}</h4>
+                <p>{{address}}</p>
             </div>
             <div id="like-icon">
                 <a href="">
@@ -45,6 +46,7 @@
                 </a>
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
 </body>

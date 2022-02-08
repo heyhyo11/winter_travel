@@ -1,7 +1,5 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from .models import user_view
-
+from django.shortcuts import render
+from .models import user_view, db_insert
 
 
 def mypage(request):
@@ -18,6 +16,14 @@ def mypage(request):
     for j in views:
         my_views.append(j)
 
+    record = []
 
-    return render(request, 'mypage/mypage.html', {'recommend': user_recommend})
+    for n in my_views[::-1]:
+        user_history = db_insert.objects.get(id=n)
+        record.append((user_history.img, user_history.title, user_history.address))
+
+        if len(record) > 50:
+            break
+
+    return render(request, 'mypage/mypage.html', {'recommend': user_recommend, 'record': record})
 
