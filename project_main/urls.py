@@ -17,12 +17,13 @@ from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path, include
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('mypage.urls')),
     path('category2/', include('category2.urls')),
     path('', include('main_page.urls')),
     path('api/', include('API.urls')),
     path('account/', include('allauth.urls')),
 ]
-
-
