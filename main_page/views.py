@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from .models import user_view, top100_view, hot_view
 from API.models import db_insert
 import random
-from django.contrib.auth.decorators import login_required
+from allauth.account.decorators import login_required
 import re
 import pandas as pd
 import numpy as np
@@ -105,12 +105,15 @@ def recommand(user):
 
     return result
 
-
 def main(request):
+    user = request.user
+    user_login_check = request.user.is_authenticated
     top100 = top100_view.objects.all().order_by('-view_count')
     hot = hot_view.objects.all().order_by('-hot_count')
-    user = request.user
-    recommand_user = recommand(user)
+    if user_login_check:
+        recommand_user = recommand(user)
+    else:
+        recommand_user = []
     return render(
         request,
         'main/index.html',

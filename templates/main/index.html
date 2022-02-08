@@ -39,12 +39,11 @@
                     <div class="hot_card">
                         {% for i in hot %}
                             {% if user.is_authenticated %}
-                            <img src="{{i.item.img}}" onclick='window.location.href = "/view/{{ i.item.id }}"'>
+                            <img class="card_img" src="{{i.item.img}}" onclick='window.location.href = "/view/{{ i.item.id }}"'>
                             {% else %}
-                            <img src="{{i.item.img}}" onclick='window.location.href = "/account/login/"'>
+                            <img class="card_img" src="{{i.item.img}}" onclick='window.location.href = "/account/login/"'>
                             {% endif %}
                         {% endfor %}
-                
                     </div>
                 </div>
                 <div class="main_top100">
@@ -60,19 +59,17 @@
                         {% endfor %}
                     </div>
                 </div>
+                {% if user.is_authenticated %}
                 <div class="recommand">
                     <h1>recommand</h1>
                     <hr>
                     <div class="recommand_card">
                         {% for img,id in recommand %}
-                            {% if user.is_authenticated %}
                             <img class="card_img" src="{{img}}" onclick='window.location.href = "/view/{{ id }}"'>
-                            {% else %}
-                            <img class="card_img" src="{{img}}" onclick='window.location.href = "/account/login/"'>
-                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </main>
