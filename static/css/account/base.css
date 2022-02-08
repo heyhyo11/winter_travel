@@ -177,9 +177,12 @@ ul li:nth-child(3) a img {
     width: 98%;
     height: 100%;
 }
-
-.error {
+.alert-error {
     width: 80%;
-    height: 30px;
-    margin: 10px auto;
+    text-align: left;
+    margin: 0 auto;
+}
+.alert-error strong{
+    color: red;
+    text-decoration-line: underline;
 }
