@@ -43,7 +43,7 @@
             var map_12a6fc7faefe44b29d8c3f7bab754067 = L.map(
                 "map_12a6fc7faefe44b29d8c3f7bab754067",
                 {
-                    center: [{{x_address}}, {{y_address}}],
+                    center: [{{ result.x_address}}, {{ result.y_address}}],
                     crs: L.CRS.EPSG3857,
                     zoom: 15,
                     zoomControl: true,
@@ -62,7 +62,7 @@
         
     
             var marker_63d22c36269e4d098d723aa01b4a3e1a = L.marker(
-                [{{x_address}}, {{y_address}}],
+                [{{ result.x_address}}, {{ result.y_address}}],
                 {}
             ).addTo(map_12a6fc7faefe44b29d8c3f7bab754067);
         

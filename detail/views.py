@@ -1,105 +1,96 @@
-from urllib import response
-from django.shortcuts import render
-import pandas as pd
-import time
-import folium
-import requests
+import datetime
 import json
-from pytz import timezone
-from datetime import datetime
+from urllib import response
+import folium
+import pandas as pd
+import requests
+from django.shortcuts import render
 from django.template.defaulttags import register
 from .models import db_insert
 
-
-
 # Create your views here.
 
-def detail_view(request,id):
+def detail_view(request):
     
-    item = db_insert.objects.get(id=id)   
-    
-    title = item.title
-    
-    x_address = item.x_address
-    
-    y_address = item.y_address
-    content = item.content
-    address = item.address
-    title_image = item.img
-
-
-    result = {
-        'title' : title,
-        'x_address' : x_address,
-        'y_address' : y_address,
-        'content' : content,
-        'address' : address,
-        'title_image' : title_image,
-    }
-    print(item)
-    return render(request, 'detail\detail_main.html', result)
+    return render(request, 'detail\detail_main.html')
 
 
 def detail(request, id):
-
-        item = db_insert.objects.get(id=id)
+        item = db_insert.objects.get(id=id)   
+        
         title = item.title
         x_address = item.x_address
         y_address = item.y_address
         content = item.content
         address = item.address
         img = item.img
-
+        taglist = item.tag
+        content = item.content
+        for tag in taglist:
+            print(tag)
+        
+        print(tag)
+        print(taglist)
         result = {
             'title' : title,
-            'x_address' : x_address,
-            'y_address' : y_address,
+            'x_address': x_address,
+            'y_address': y_address,
             'content' : content,
             'address' : address,
             'img': img,
+            'taglist' : taglist,
+            'content': content,            
         }
+
+        now = datetime.datetime.now()
+        
+        base_time = now.strftime('%H'+"00")
+        base_date = now.strftime("%Y%m%d")
+
+        if 200<=int(base_time)<=400:
+            base_hour = "0200"
+        elif 500<=int(base_time)<=700:
+            base_hour = "0500"
+        elif 800<=int(base_time)<=1000:
+            base_hour = "0800"
+        elif 1100<=int(base_time)<=1300:
+            base_hour = "1100"
+        elif 1400<=int(base_time)<=1600:
+            base_hour = "1400"
+        elif 1700<=int(base_time)<=1900:
+            base_hour = "1700"
+        elif 2000<=int(base_time)<=2200:
+            base_hour = "2000"
+        elif int(base_time) == 2300:  
+            base_hour = "2300"
+        else:
+            base_hour = "2300"
+            base_date = (now - datetime.timedelta(days=1)).strftime("%Y%m%d")
+
+        X_int = int(float(x_address))
+        Y_int = int(float(y_address))
+        print(X_int)
+        print(Y_int)
 
         url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
 
-        # now = datetime.now(timezone('Asia/Seoul'))
-        # print(now)
-        # KST = timezone('Asial/Seoul')
-        now = datetime.today()
-        # now = now.imezone(KST)
-
-        base_date = now.strftime("%Y%m%d")   # "20200214" == 기준 날짜
-        base_time = now.strftime("%H"+"00")  # 날씨 값
-        print(base_date)
-        print(base_time)
-        
         params = {
-            'serviceKey':'xTnBP9tXQXWESKYWyRC9r6UfFnTmqn4CXeGOq3uyJornz5bqAVaQ0zy47BxH+8HycbQ0bT8XlKtv5tq9h+iQ0g==',
+            'serviceKey': 'xTnBP9tXQXWESKYWyRC9r6UfFnTmqn4CXeGOq3uyJornz5bqAVaQ0zy47BxH+8HycbQ0bT8XlKtv5tq9h+iQ0g==',
             'pageNo':'1',
-            'numOfRows':'900',
+            'numOfRows':"900",
             'dataType':'JSON',
-            'base_date':f'{base_date}',
-            'base_time':'1100',
-            'nx':'37',
-            'ny':'126'
+            'base_date':{base_date},
+            'base_time':{base_hour},
+            'nx': f'{X_int}',
+            'ny': f'{Y_int}',
         }
+        # f'{X_int}'
+        # f'{Y_int}'
+
 
         # 값 요청
-        response = requests.get(url, params=params)
-        target = json.loads(response.content.decode('utf-8'))
-        # print(type(response))
-        # print(response)
-        # print(response.content)
-        # content = response.text
-        # print(type(content))
-
-        # target = response.content
-        # print(type(target))
-
-        # print(target)
-
-        # print(target['response']['body']['items']['item'])
-
-        # print(response)
+        res = requests.get(url, params=params)
+        target = json.loads(res.content.decode('utf-8'))
 
         category = []
         fcstDate = []
@@ -161,8 +152,6 @@ def detail(request, id):
             else:
                 continue
 
-                # print(cate_list)
-
         weather_data = pd.DataFrame({
             '카테고리': category,
             '예보 날짜': fcstDate,
@@ -170,7 +159,6 @@ def detail(request, id):
             '날씨 값': fcstValue,
         })
 
-        # weather_data
 
         weather_list = weather_data[(weather_data['카테고리'] == "TMP") | (
             weather_data['카테고리'] == "POP") | (weather_data['카테고리'] == "SKY")]
@@ -203,9 +191,9 @@ def detail(request, id):
         for date in fcstDate_f:
             split_date = date[6:8]
             fcstDate_date.append(split_date)
-            # print(date)
 
-        # print(fcstDate_f)
+
+
 
         #기온 예보값
         # 날씨값 = temperature
@@ -236,8 +224,7 @@ def detail(request, id):
         # print(type(fcstTime_f[0]))
         # print(len(fcstTime_f[0]))
         # split_date = TMP_fcstDate.substring(0, 2)
-        # hour=[]
-        # print(split_date)
+
         weather_dic = {}
         for i in range(len(fcstDate_date)):
             weather_dic[i]= {
@@ -251,7 +238,7 @@ def detail(request, id):
         # print(weather_dic.keys())
         # print(type(weather_dic))
         # print(type(fcstDate_date))
-        return render(request, 'detail\detail_main.html', {'weather': weather_dic,'result':result})
+        return render(request, 'detail\detail_main.html', {'weather': weather_dic, 'result': result})
 
 
 def thismap(request):
@@ -272,19 +259,4 @@ def thismap(request):
 
 
 def pictures(request):
-    db = db_insert.objects.all()
-    db_data = {'db': db}
-    title = db[0].title
-    content = db[0].content
-    x_address = db[0].x_address
-    y_address = db[0].y_address
-    address = db[0].address
-    print(db_data)
-    print(title)
-    return render(request, 'detail/test.html', {'title': title, 'content': content, 'x_address': x_address, 'y_address': y_address, 'address': address})
-
-
-# @register.filter
-# def get_range(value):
-
-#     return range(len(value))
+    return render(request, 'detail/test.html')
