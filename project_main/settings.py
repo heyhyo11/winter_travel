@@ -83,6 +83,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
+        'libraries':{
+            'extras': 'mypage.templatetags.extras',
+        }
         },
     },
 ]
@@ -189,6 +193,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_REDIRECT_URL = '/'                # 로그인 성공 시 리다이렉트할 페이지
+LOGIN_URL = '/account/login'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/account/login'  # 로그아웃 후 리다이렉트할 페이지
 
 ACCOUNT_LOGOUT_ON_GET = True             # /account/logout 페이서 추가적으로 버튼 클릭할 것 없이 자동으로 로그아웃 시켜줌

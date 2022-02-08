@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 {% load static %}
+{% load extras %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>MyPage</title>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <link rel="shortcut icon" href="{% static 'image/favicon.png' %}" type="image/x-icon">
 
-{#    <link href="{% static 'mypage/css/mypage.css' %}" rel="stylesheet" type="text/css">#}
-    <link rel="stylesheet" href="/static/mypage/css/mypage.css">
-
-    <script src='{% static 'mypage/js/mypage.js' %}'></script>
+    <link href="{% static 'mypage/css/mypage.css' %}" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -27,27 +27,28 @@
     </div>
     <div id="my-like">
         <h2>둘러본 여행지</h2>
-        {% for img,title,address in record %}
-        <div id="like-box" onclick="location.href=''">
-            <img src="{{img}}"/>
+        {% for img,title,address,id in record %}
+        <div id="like-box" class="like-box">
+            <img src="{{img}}" onclick="window.location.href='/api/view/{{id}}'"/>
             <div id="like-contents">
-                <h4>{{title}}</h4>
-                <p>{{address}}</p>
+                <h2 onclick="window.location.href='/api/view/{{id}}'">{{title}}</h2>
+                <p onclick="window.location.href='/api/view/{{id}}'">{{address}}</p>
             </div>
-            <div id="like-icon">
-                <a href="">
-                    <i class="fas fa-share-square fa-lg"></i>
-                </a>
-                <a href="">
-                    <i class="far fa-copy fa-lg"></i>
-                </a>
-                <a href="">
-                    <i class="fas fa-trash fa-lg"></i>
-                </a>
+            <div id="like-icon" >
+                {% if ' ' in title %}
+                    <i class="fas fa-share-square fa-lg" id="{{title | split}}" onclick="share('{{title | split}}','{{address}}','{{img}}')"></i>
+                {% else %}
+                <i class="fas fa-share-square fa-lg" id="{{title}}" onclick="share('{{title}}','{{address}}','{{img}}')"></i>
+                {% endif %}
+                    <i class="far fa-copy fa-lg" onclick="CopyText('{{title}}')"></i>
+                    <div id="{{title}}" style="display: none;">{{address}}</div>
+                    <i class="fas fa-trash fa-lg" onclick="window.location.href='/api/delete/{{id}}'"></i>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
+
+<script src='{% static 'mypage/js/mypage.js' %}'></script>
 </body>
 </html>

@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from .models import user_view, db_insert
+from API.models import user_view, db_insert
+from allauth.account.decorators import login_required
 
-
+@login_required
 def mypage(request):
     user_id = request.user
 
@@ -20,7 +21,7 @@ def mypage(request):
 
     for n in my_views[::-1]:
         user_history = db_insert.objects.get(id=n)
-        record.append((user_history.img, user_history.title, user_history.address))
+        record.append((user_history.img, user_history.title, user_history.address, user_history.id))
 
         if len(record) > 50:
             break

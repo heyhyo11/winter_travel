@@ -35,6 +35,8 @@
                            id="id_login">
                     <input type="password" name="password" placeholder="비밀번호" autocomplete="current-password" required=""
                            id="id_password">
+                           <input type="hidden" id="csrf_token" value='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+
                     <button class="btn" type="submit">{% trans "Sign In" %} &raquo;</button>
                 </form>
                 {% if form.errors %}

@@ -44,7 +44,11 @@
                         <img class='real-img' src="{{ landmark.img }}"><a name="theme02"></a>
                         <div class="photo-description">
                             <h2>{{ landmark.title }}</h2>
+                            {% if user.is_authenticated %}
                             <button type="button" onclick="window.location.href='/api/view/{{ landmark.id }}'">둘러보기</button>
+                            {% else %}
+                            <button type="button" onclick="window.location.href='/account/login'">둘러보기</button>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}
@@ -61,7 +65,11 @@
             <div class="center">
                 {% for museum in museums %}
                     <div><img src="{{ museum.img }}"><a name="theme03"></a>
+                        {% if user.is_authenticated %}
                         <div class="photo-description"><h2>{{ museum.title }}</h2><button type="button" onclick="window.location.href='/api/view/{{ museum.id }}' ">둘러보기</button></div></div>
+                        {% else %}
+                        <div class="photo-description"><h2>{{ museum.title }}</h2><button type="button" onclick="window.location.href='/account/login' ">둘러보기</button></div></div>
+                        {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -76,7 +84,11 @@
             <div class="center">
                 {% for lifestyle in lifestyles %}
                     <div><img src="{{ lifestyle.img }}"><a name="theme04"></a>
+                        {% if user.is_authenticated %}
                         <div class="photo-description"><h2>{{ lifestyle.title }}</h2><button type="button" onclick="window.location.href='/api/view/{{ lifestyle.id }}' ">둘러보기</button></div></div>
+                        {% else %}
+                        <div class="photo-description"><h2>{{ lifestyle.title }}</h2><button type="button" onclick="window.location.href='/account/login' ">둘러보기</button></div></div>
+                        {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -91,7 +103,11 @@
             <div class="center">
                 {% for park in parks %}
                     <div><img src="{{ park.img }}"><a name="theme05"></a>
+                        {% if user.is_authenticated %}
                         <div class="photo-description"><h2>{{ park.title }}</h2><button type="button" onclick="window.location.href='/api/view/{{ park.id }}' ">둘러보기</button></div></div>
+                        {% else %}
+                        <div class="photo-description"><h2>{{ park.title }}</h2><button type="button" onclick="window.location.href='/account/login' ">둘러보기</button></div></div>
+                        {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -106,7 +122,11 @@
             <div class="center">
                 {% for historic_site in historic_sites %}
                     <div><img src="{{ historic_site.img }}">
+                        {% if user.is_authenticated %}
                         <div class="photo-description"><h2>{{ historic_site.title }}</h2><button type="button" onclick="window.location.href='/api/view/{{ historic_site.id }}' ">둘러보기</button></div></div>
+                        {% else %}
+                        <div class="photo-description"><h2>{{ historic_site.title }}</h2><button type="button" onclick="window.location.href='/account/login' ">둘러보기</button></div></div>
+                        {% endif %}
                 {% endfor %}
             </div>
         </div>
