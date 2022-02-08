@@ -1,7 +1,7 @@
 from django.db import models
 from user.models import UserModel
 
-class db_recommend(models.Model):
+class user_view(models.Model):
     class Meta:
         db_table = 'user_view'
     category = models.TextField(max_length=500)
