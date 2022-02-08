@@ -9,6 +9,7 @@
     {% load static %}
     <link href="{% static 'css/account/base.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/account/signup.css' %}" rel="stylesheet" type="text/css">
+
     {% load i18n %}
     {% load account socialaccount %}
 </head>
@@ -17,6 +18,7 @@
     <div class="container">
         <div class="img-box">
             <img src="{% static 'image/map.png' %}"/>
+
         </div>
         <div class="wrapper">
             <div class="wrapper-title">
@@ -48,6 +50,7 @@
                         </div>
                     {% endfor %}
                 {% endif %}
+
                 <div class="social-box">
                     <div class="with-sns">
                         <span class="bar bar-left"></span>
@@ -61,18 +64,21 @@
                                 <a title="Kakao" class="socialaccount_provider kakao"
                                    href="/account/kakao/login">
                                     <img src="{% static 'image/kakao.png' %}"/>
+
                                 </a>
                             </li>
                             <li>
                                 <a title="Google" class="socialaccount_provider google"
                                    href="/account/google/login">
                                     <img src="{% static 'image/google.png' %}"/>
+
                                 </a>
                             </li>
                             <li>
                                 <a title="GitHub" class="socialaccount_provider github"
                                    href="/account/github/login">
                                     <img src="{% static 'image/github.png' %}"/>
+
                                 </a>
                             </li>
                         </ul>
