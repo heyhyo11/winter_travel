@@ -164,9 +164,7 @@ def detail(request, id):
         })
 
 
-        weather_list = weather_data[(weather_data['카테고리'] == "TMP") | (
-            weather_data['카테고리'] == "POP") | (weather_data['카테고리'] == "SKY")]
-        weather_list
+        weather_list = weather_data[(weather_data['카테고리'] == "TMP") | (weather_data['카테고리'] == "POP") | (weather_data['카테고리'] == "SKY")]
 
 
         TMP_list = weather_list[weather_list['카테고리'] == 'TMP']

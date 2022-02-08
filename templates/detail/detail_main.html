@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="{% static 'detail_main/css/detail_main.css' %}" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" href="{% static 'detail_main/css/recomend.css' %}">
     <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
     <script src='{% static 'detail_main/js/detail_main.js' %}'></script>
 
@@ -80,7 +80,7 @@
         <p class="weather_title" style="width: 870px; justify-content: center;">추천장소</p>
         <div id="recommend-list">
             <div class="recommend-card">
-
+                {% include 'detail/detail_sub/recommend.html' %}
             </div>
         </div>
     </div>
