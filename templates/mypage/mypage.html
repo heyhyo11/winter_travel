@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPage</title>
+
+{#    <link href="{% static 'mypage/css/mypage.css' %}" rel="stylesheet" type="text/css">#}
+    <link rel="stylesheet" href="/static/mypage/css/mypage.css">
+
+    <script src='{% static 'mypage/js/mypage.js' %}'></script>
+
+</head>
+<body>
+{% include 'header.html' %}
+{% include 'side.html' %}
+<div id="main">
+    <div id="my-keyword">
+        <h2>나의 키워드</h2>
+        <div id="tag-box">
+            {% for category in recommend %}
+            <div class="tag">
+                #{{category}}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="my-like">
+        <h2>둘러본 여행지</h2>
+        {% for img,title,address in record %}
+        <div id="like-box" onclick="location.href=''">
+            <img src="{{img}}"/>
+            <div id="like-contents">
+                <h4>{{title}}</h4>
+                <p>{{address}}</p>
+            </div>
+            <div id="like-icon">
+                <a href="">
+                    <i class="fas fa-share-square fa-lg"></i>
+                </a>
+                <a href="">
+                    <i class="far fa-copy fa-lg"></i>
+                </a>
+                <a href="">
+                    <i class="fas fa-trash fa-lg"></i>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
