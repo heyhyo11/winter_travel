@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'project_main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'winter',
+        'NAME': 'winter_project',
         'USER': 'admin',
         'PASSWORD': 'winterproject',
         'HOST': 'database-1.cudljsclqczn.ap-northeast-2.rds.amazonaws.com',
