@@ -23,3 +23,4 @@ def main(request):
         {'top100':top100,'recommand':recommand_user, 'hot':hot}
     )
 
+

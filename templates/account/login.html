@@ -6,15 +6,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>로그인</title>
-
     {% load static %}
     <link href="{% static 'css/account/base.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/account/login.css' %}" rel="stylesheet" type="text/css">
+
     {% load i18n %}
     {% load account socialaccount %}
 </head>
 <body>
-
 {% include 'header.html' %}
     <div class="container">
         <div class="img-box">
@@ -50,6 +49,7 @@
                         </div>
                     {% endfor %}
                 {% endif %}
+
                 <div class="social-box">
                     <div class="with-sns">
                         <span class="bar bar-left"></span>
@@ -62,18 +62,20 @@
                                 <a title="Kakao" class="socialaccount_provider kakao"
                                    href="/account/kakao/login">
                                     <img src="{% static 'image/kakao.png' %}"/>
+
                                 </a>
                             </li>
                             <li>
                                 <a title="Google" class="socialaccount_provider google"
                                    href="/account/google/login">
                                     <img src="{% static 'image/google.png' %}"/>
+
                                 </a>
                             </li>
                             <li>
                                 <a title="GitHub" class="socialaccount_provider github"
-                                   href="/account/github/login">
-                                    <img src="{% static 'image/github.png' %}"/>
+                                   href="/account/github/login">                                    <img src="{% static 'image/github.png' %}"/>
+
                                 </a>
                             </li>
                         </ul>
