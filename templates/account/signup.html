@@ -30,10 +30,24 @@
                     {% csrf_token %}
                     <input type="text" name="username" placeholder="사용자 이름" autocomplete="username" minlength="1" maxlength="150" required="" id="id_username">
                     <input type="email" name="email" placeholder="이메일 (trip@example.com)" autocomplete="email" required="" id="id_email">
-                    <input type="password" name="password1" placeholder="비밀번호 (8자 이상)" autocomplete="new-password" required="" id="id_password1">
+                    <input type="password" name="password1" placeholder="비밀번호 (8자 이상, 문자+숫자)" autocomplete="new-password" required="" id="id_password1">
                     <input type="password" name="password2" placeholder="비밀번호 확인" required="" id="id_password2">
                     <button class="btn" type="submit">{% trans "Sign Up" %} &raquo;</button>
                 </form>
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert-error">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert-error">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
                 <div class="social-box">
                     <div class="with-sns">
                         <span class="bar bar-left"></span>
