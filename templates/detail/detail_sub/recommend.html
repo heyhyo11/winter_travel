@@ -1,16 +1,19 @@
 <div class="cardlist">
+    {% for tw in recommend_category %}
     <div class="card">
         <div class="image">
-            <img src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg">
+            <img src="{{ tw.img }}">
         </div>
         <div class="details">
             <div class="center">
-                <h1>관광지 이름</h1>
-                <h4> 카테고리 </h4>
-                <p>Lorem ipsum is simple dummy text on the printing and typesetting industry.</p>
+                <h1>{{ tw.title}}</h1>
+                <h4>{{ tw.category}}</h4>
+                <p>{{ tw.address }}</p>
                 <ul>
                 </ul>
+
             </div>
         </div>
     </div>
 </div>
+{% endfor %}
