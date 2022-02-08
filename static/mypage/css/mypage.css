@@ -1,15 +1,16 @@
 body {
-    margin: 150px 0;
+    margin: 90px 0;
     background-color: #f5f8fd;
 }
 
 #main {
     margin: auto;
+    padding-top: 10px;
     width: 700px;
 }
 
 #main #my-keyword {
-    height: 400px;
+    height: 300px;
 }
 
 #main #my-keyword #tag-box {
