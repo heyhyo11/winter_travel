@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main_page',
     'storages',
-    # 'news',
     'detail',
+
     # 유저
     'user',
     # 소셜 로그인
