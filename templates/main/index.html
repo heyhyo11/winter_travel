@@ -34,8 +34,9 @@
 
                 </div>
                 <div class="main_hot">
-                    <h1>HOT</h1>
-                    <hr>
+                    <div class="main_h2">
+                        <h2>실시간 추천!</h2>
+                    </div>
                     <div class="hot_card">
                         {% for i in hot %}
                             {% if user.is_authenticated %}
@@ -47,8 +48,9 @@
                     </div>
                 </div>
                 <div class="main_top100">
-                    <h1>TOP100</h1>
-                    <hr>
+                    <div class="main_h2">
+                        <h2>누적 Top 100 명소</h2>
+                    </div>
                     <div class="top100_card">
                         {% for i in top100 %}
                             {% if user.is_authenticated %}
@@ -61,8 +63,9 @@
                 </div>
                 {% if user.is_authenticated %}
                 <div class="recommand">
-                    <h1>recommand</h1>
-                    <hr>
+                    <div class="main_h2">
+                        <h2>이런 곳은 어떠신가요?</h2>
+                    </div>
                     <div class="recommand_card">
                         {% for img,id in recommand %}
                             <img class="card_img" src="{{img}}" onclick='window.location.href = "/view/{{ id }}"'>
