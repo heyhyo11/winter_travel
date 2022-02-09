@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>상세페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   
+        <link href="../../static/detail_main/css/recomend.css" rel="stylesheet" type="text/css">
+        <link href="../../static/detail_main/css/detail_main.css" rel="stylesheet" type="text/css">
+    <!-- <link href="{% static 'detail_main/css/detail_main.css' %}" rel="stylesheet" type="text/css"> -->
+    <!-- <link rel="stylesheet" href="{% static 'detail_main/css/recomend.css' %}"> -->
+    <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
+    <script src='{% static 'detail_main/js/detail_main.js' %}'></script>
+
+</head>
+<body>
+{% include 'header.html' %}
+{% include 'side.html' %}
+
+<div class="container">
+    <div class="containerA">
+        <h1></h1>
+        <div id="container">
+
+            <!-- Start	Product details -->
+            <div class="product-details">
+
+                <!-- 	Product Name -->
+                <h1>{{ result.title }}</h1>
+                <!-- The most important information about the product -->
+                <p class="information">
+                    {{ result.address }}
+                </p>
+                <p>
+                    {% for tags in result.taglist %}
+                        {{ tags }}
+                    {% endfor %}
+                </p>
+                <p1>
+                    {{ result.content }}
+                </p1>
+                <!-- 		Control -->
+                <div class="control">
+                    <!-- End Button buying -->
+                </div>
+            </div>
+
+            <!-- 	End	Product details   -->
+
+            <!-- 	Start product image & Information -->
+
+            <div class="product-image">
+                <img src='{{ result.img }}' alt="title_img">
+            </div>
+        </div>
+
+    </div>
+    <div class="containerB">
+        <p1> 관련 추천 관광지 </p1>
+        {% include 'detail/detail_sub/recommend.html' %}
+        
+    </div>
+    <div class="containerC">
+        <div>
+            <p class="weather_title" style="width: 870px; justify-content: center;">{{ result.title }}의 날씨</p>
+            <div class="weatherList">
+                
+                <div style="display: flex; background-color: #f5f8fd;">
+                    {% block A %}
+                        {% include 'detail/detail_sub/weather.html' %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="containerD">
+        <div class="map">
+            <p>관광지 위치</p>
+            <div class="maps">
+                {% block body %}
+                {% include 'detail/detail_sub/map.html' %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

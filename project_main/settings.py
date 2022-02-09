@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'storages',
     'category2',
     'API',
+    'detail',
 
     # 유저
     'user',
@@ -231,5 +232,4 @@ SOCIALACCOUNT_PROVIDERS = {
 CRONJOBS = [
     ('0 */1 * * *', 'API.cron.hot_item_reset')
 ]
-
 

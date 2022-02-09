@@ -1,0 +1,19 @@
+{% load static %}
+{% for key,value in weather.items %}        
+        <div class="weathers">
+            <p>{{ value.fcstDate_date}}일</p>
+            <p>{{ value.fcstTime_hour}}시</p>
+            <div class="weatherImg">
+            {% if value.SKY_fcstValue == "1" %}
+                <img src="{% static 'detail/image/non.png' %}">
+            {% elif value.SKY_fcstValue == "3" %}
+                <img src="{% static 'detail/image/little.png' %}">
+            {% elif value.SKY_fcstValue == "4" %}
+                <img src="{% static 'detail/image/many.png' %}">
+            {% endif %}
+            </div>
+            <p>기온 : {{ value.TMP_fcstValue }} ℃</p>
+            <p>강수확률 : {{ value.POP_fcstValue }} %</p>
+        </div>
+{% endfor %}
+   
