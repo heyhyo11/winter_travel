@@ -91,6 +91,22 @@ def user_view_in(request, id):
     return redirect(f'/detail/{id}')
 
 
+def rand_item():
+    result = []
+    num = []
+    id = []
+    # 랜덤 5개
+    items = db_insert.objects.all()
+    for i in range(15):
+        rand = random.randrange(0, len(items))
+        while rand in num and str(items[rand].id) not in id:
+            rand = random.randrange(0, len(items))
+        img = (items[rand].img, items[rand].id)
+        result.append(img)
+        num.append(img)
+        id.append(items[rand].id)
+    return result
+
 # ============================ 추천 시스템 ======================
 
 def recommand(user):
@@ -101,18 +117,11 @@ def recommand(user):
     try:
         user_in_view = user_view.objects.get(user_id=user_id.id)
     except:
-        num = []
-        # 랜덤 5개
-        items = db_insert.objects.all()
-        for i in range(15):
-            rand = random.randrange(0, len(items))
-            while rand in num and str(items[rand].id) not in id:
-                rand = random.randrange(0, len(items))
-            img = (items[rand].img, items[rand].id)
-            result.append(img)
-            num.append(img)
-            id.append(items[rand].id)
+        result = rand_item()
     else:
+        if user_in_view.user_view == '':
+            result = rand_item()
+            return result
         user_views = user_view.objects.all()
         df = None
         for i in user_views:
@@ -145,9 +154,7 @@ def recommand(user):
         user_based_collab = pd.DataFrame(user_based_collab, index=title_user.index,
                                                 columns=title_user.index)
 
-        print(user_based_collab, user_id.id)
         similar_user = user_based_collab[user_id.id].sort_values(ascending=False)[:2].index[1].tolist()
-        print(similar_user)
         similar_user_views = user_view.objects.get(user_id=similar_user).user_view.split(',')
 
 

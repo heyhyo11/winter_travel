@@ -10,11 +10,6 @@ from API.models import db_insert
 import pandas as pd
 
 
-def detail_view(request):
-    
-    return render(request, 'detail\detail_main.html')
-
-
 def detail(request, id):
     item = db_insert.objects.get(id=id)
 
@@ -26,11 +21,7 @@ def detail(request, id):
     img = item.img
     taglist = item.tag
     content = item.content
-    for tag in taglist:
-        print(tag)
 
-    print(tag)
-    print(taglist)
     result = {
         'title' : title,
         'x_address': x_address,
@@ -69,8 +60,6 @@ def detail(request, id):
 
     X_int = int(float(x_address))
     Y_int = int(float(y_address))
-    print(X_int)
-    print(Y_int)
 
     url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
 
@@ -84,9 +73,6 @@ def detail(request, id):
         'nx': f'{X_int}',
         'ny': f'{Y_int}',
     }
-    # f'{X_int}'
-    # f'{Y_int}'
-
 
     # 값 요청
     res = requests.get(url, params=params)
@@ -98,9 +84,6 @@ def detail(request, id):
     fcstValue = []
 
     cate = target['response']['body']['items']['item']
-
-    # print(cate)
-    # print(type(cate[0]['fcstDate']))
 
     for cate_list in cate:
         # print(cate_list)
@@ -180,10 +163,8 @@ def detail(request, id):
     TMP_fcstValue = []
     POP_fcstValue = []
     SKY_fcstValue = []
-    # print(fcstTime_f)
 
 
-    print('_________________________________')
     # 예보날짜값
     # 날짜값 = split_date
     for date in fcstDate_f:
@@ -197,31 +178,20 @@ def detail(request, id):
     # 날씨값 = temperature
     for temperature in fcstValue_TMP:
         TMP_fcstValue.append(temperature)
-        # print(temperature)
 
-    print('_________________________________')
 
     for hour in fcstTime_f:
         split_hour = hour[0:2]
         fcstTime_hour.append(split_hour)
-        # print(split_hour)
 
 
     #강수확률 예보값
     #강수확률 = precipitation
     for precipitation in fcstValue_POP:
         POP_fcstValue.append(precipitation)
-        # print(POP_fcstValue)
 
     for Sky in fcstValue_SKY:
         SKY_fcstValue.append(Sky)
-        # print(SKY_fcstValue)
-
-
-    # print(fcstTime_f)
-    # print(type(fcstTime_f[0]))
-    # print(len(fcstTime_f[0]))
-    # split_date = TMP_fcstDate.substring(0, 2)
 
     weather_dic = {}
     for i in range(len(fcstDate_date)):
@@ -233,35 +203,9 @@ def detail(request, id):
             'SKY_fcstValue': SKY_fcstValue[i],
         }
 
-    # print(weather_dic.keys())
-    # print(type(weather_dic))
-    # print(type(fcstDate_date))
-
     kind = db_insert.objects.get(id=id).category
     detail_category = db_insert.objects.order_by("?").filter(category=kind)[:5:]
 
 
-    return render(request, 'detail\detail_main.html', {'weather': weather_dic, 'result': result, 'recommend_category':detail_category})
-
-
-def thismap(request):
-    location_x = 33.249958
-    location_y = 126.413419
-    location = {
-        'x':location_x,
-        'y':location_y
-        }
-    # location에 위치정보 받아오기
-    # m = folium.Map(location=[location_x, location_y], zoom_start=15)
-    # folium.Marker(
-    #     # popup에 위치 이름값 받아서 지정해주기
-    #     location=[location_x, location_y], popup='해운대', icon=folium.Icon(color="red", icon='star')).add_to(m)
-    # m.save('detail/detail_sub/map.html')
-
-    return render(request, 'detail/detail_sub/map.html', location)
-
-
-def pictures(request):
-    return render(request, 'detail/test.html')
-
+    return render(request, 'detail/detail_main.html', {'weather': weather_dic, 'result': result, 'recommend_category':detail_category})
 
