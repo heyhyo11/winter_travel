@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+{% load extras %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPage</title>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <link rel="shortcut icon" href="{% static 'image/favicon.png' %}" type="image/x-icon">
+
+    <link href="{% static 'mypage/css/mypage.css' %}" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+{% include 'header.html' %}
+{% include 'side.html' %}
+<div id="main">
+    <div id="my-keyword">
+        <h2>나의 키워드</h2>
+        <div id="tag-box">
+            {% for category in recommend %}
+            <div class="tag">
+                #{{category}}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="my-like">
+        <h2>둘러본 여행지</h2>
+        {% for img,title,address,id in record %}
+        <div id="like-box" class="like-box">
+            <img src="{{img}}" onclick="window.location.href='/api/view/{{id}}'"/>
+            <div id="like-contents">
+                <h2 onclick="window.location.href='/api/view/{{id}}'">{{title}}</h2>
+                <p onclick="window.location.href='/api/view/{{id}}'">{{address}}</p>
+            </div>
+            <div id="like-icon" >
+                {% if ' ' in title %}
+                    <i class="fas fa-share-square fa-lg" id="{{title | split}}" onclick="share('{{title | split}}','{{address}}','{{img}}')"></i>
+                {% else %}
+                <i class="fas fa-share-square fa-lg" id="{{title}}" onclick="share('{{title}}','{{address}}','{{img}}')"></i>
+                {% endif %}
+                    <i class="far fa-copy fa-lg" onclick="CopyText('{{title}}')"></i>
+                    <div id="{{title}}" style="display: none;">{{address}}</div>
+                    <i class="fas fa-trash fa-lg" onclick="window.location.href='/api/delete/{{id}}'"></i>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src='{% static 'mypage/js/mypage.js' %}'></script>
+</body>
+</html>

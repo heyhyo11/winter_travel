@@ -1,7 +1,6 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from API.models import top100_view, hot_view
 from API.views import recommand
-from allauth.account.decorators import login_required
 
 
 
@@ -22,4 +21,5 @@ def main(request):
         'main/index.html',
         {'top100':top100,'recommand':recommand_user, 'hot':hot}
     )
+
 

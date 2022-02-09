@@ -6,15 +6,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>로그인</title>
-
     {% load static %}
     <link href="{% static 'css/account/base.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/account/login.css' %}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="{% static 'image/favicon.png' %}" type="image/x-icon">
+
     {% load i18n %}
     {% load account socialaccount %}
 </head>
 <body>
-
 {% include 'header.html' %}
     <div class="container">
         <div class="img-box">
@@ -34,6 +34,8 @@
                            id="id_login">
                     <input type="password" name="password" placeholder="비밀번호" autocomplete="current-password" required=""
                            id="id_password">
+                           <input type="hidden" id="csrf_token" value='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+
                     <button class="btn" type="submit">{% trans "Sign In" %} &raquo;</button>
                 </form>
                 {% if form.errors %}

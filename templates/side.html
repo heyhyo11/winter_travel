@@ -7,22 +7,25 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!-- 폰트어썸 -->
     <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
+<style>
 
+</style>
 <div class="show">
     <i class="fas fa-angle-right fa-3x" id="side_show"></i>
 </div>
 <div class="side_container">
     <div class="side_wrap">
         <i class="fas fa-angle-left fa-3x" id="side_hide"></i>
-        <div class="side_area"><a href="#">category</a></div>
-        <div class="side_area"><a href="#">category</a></div>
-        <div class="side_area"><a href="#">category</a></div>
-        <div class="side_area"><a href="#">category</a></div>
-        <div class="side_area"><a href="#">category</a></div>
-        <div class="side_area"><a href="#">category</a></div>
-        <div class="side_area"><a href="#">category</a></div>
-
-
+        {% if user.is_authenticated %}
+      
+        <div class="side_user">
+            <p>{{user}} 님 안녕하세요 ! </p>
+        </div>
+        <div class="side_area"><a href="/account/logout">LogOut</a></div>
+        <div class="side_area"><a href="/mypage">Mypage</a></div>
+    {% endif %}
+    <div class="side_area"><a href="/">Main</a></div>
+    <div class="side_area"><a href="/category2">Category</a></div>
     </div>
 </div>
 

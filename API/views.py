@@ -7,6 +7,17 @@ import re
 import pandas as pd
 import random
 from sklearn.metrics.pairwise import cosine_similarity
+from allauth.account.decorators import login_required
+
+
+def user_view_delete(request, id):
+    user_id = request.user
+    user_view_get= user_view.objects.get(user_id=user_id.id)
+    user_view_list = (user_view_get.user_view).split(',')
+    user_view_list.remove(str(id))
+    user_view_get.user_view = ','.join(user_view_list)
+    user_view_get.save()
+    return redirect('/mypage')
 
 # ============================== view_list ===================
 
@@ -77,7 +88,7 @@ def user_view_in(request, id):
         view_count.hot_count = count
         view_count.save()
 
-    return redirect('/')
+    return redirect(f'/detail/{id}')
 
 
 # ============================ 추천 시스템 ======================
@@ -134,9 +145,9 @@ def recommand(user):
         user_based_collab = pd.DataFrame(user_based_collab, index=title_user.index,
                                                 columns=title_user.index)
 
-
+        print(user_based_collab, user_id.id)
         similar_user = user_based_collab[user_id.id].sort_values(ascending=False)[:2].index[1].tolist()
-
+        print(similar_user)
         similar_user_views = user_view.objects.get(user_id=similar_user).user_view.split(',')
 
 

@@ -1,0 +1,17 @@
+
+<div class="cardlist">
+    {% for tw in recommend_category %}
+    <div id="cont">
+        <div class="produc-image">
+            <img src="{{ tw.img }}"
+                alt="Omar Dsoky">
+        </div>
+        <div class="produc-details">
+                <h1>{{ tw.title}}</h1>
+                <h4>{{ tw.category}}</h4>
+                <p>{{ tw.address }}</p>
+                <ul></ul>
+        </div>
+    </div>
+    {% endfor %}
+</div>
