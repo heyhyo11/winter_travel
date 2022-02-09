@@ -6,7 +6,7 @@ import pandas as pd
 import requests
 from django.shortcuts import render
 from django.template.defaulttags import register
-from .models import db_insert
+from API.models import db_insert
 import pandas as pd
 
 
