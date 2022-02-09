@@ -86,6 +86,7 @@ h1 {
     font-size: 34px;
     color: #344055;
     margin: 0;
+    white-space: normal;
 
 }
 
@@ -104,6 +105,7 @@ h1 {
     font-size: 20px;
     color: #7d7d7d;
     margin: 13px;
+    white-space: normal;
 
 }
 
@@ -240,10 +242,21 @@ h1 {
     transform: scale(1.2, 1.2);
 }
 
-.containerB {
+.containerB  {
+    display: grid;
     justify-content: center;
-    /*background: crimson;*/
-    display: flex;
+    color: #f5f8fd;
+}
+
+
+.containerB p1 {
+    background: #746f6b;
+    display: grid;
+    justify-content: center;
+    font-size: 30px;
+    border-radius: 20px 20px 0px 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .map {
@@ -294,14 +307,18 @@ h1 {
     width: 900px;
     margin: 20px;
     box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.31);
+
 }
 
+.weatherList::-webkit-scrollbar { background-color: #f5f8fd;  } 
+.weatherList::-webkit-scrollbar-thumb { background-color: #a5b8d9; border-radius: 10px;}
 .weather_title {
-    color: #f5f8fd;
+    background: #746f6b;
     font-size: 30px;
     display: grid;
-    text-align: left;
-    margin: 15px;
+    padding: 10px;
+    border-radius: 20px 20px 0px 0px;
+    margin-left: 25px;
 }
 
 .weathers {
@@ -333,7 +350,7 @@ h1 {
 }
 
 .containerD {
-    display: grid;
-    width: 100%;
-    flex-direction: row;
+    justify-content: center;
+    /*background: crimson;*/
+    display: flex;
 }

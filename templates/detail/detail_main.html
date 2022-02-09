@@ -6,8 +6,11 @@
     <title>상세페이지</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="{% static 'detail_main/css/detail_main.css' %}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{% static 'detail_main/css/recomend.css' %}">
+   
+        <link href="../../static/detail_main/css/recomend.css" rel="stylesheet" type="text/css">
+        <link href="../../static/detail_main/css/detail_main.css" rel="stylesheet" type="text/css">
+    <!-- <link href="{% static 'detail_main/css/detail_main.css' %}" rel="stylesheet" type="text/css"> -->
+    <!-- <link rel="stylesheet" href="{% static 'detail_main/css/recomend.css' %}"> -->
     <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
     <script src='{% static 'detail_main/js/detail_main.js' %}'></script>
 
@@ -55,19 +58,15 @@
 
     </div>
     <div class="containerB">
-        <div class="map">
-            <p>관광지 위치</p>
-            <div class="maps">
-                {% block body %}
-                    {% include 'detail/detail_sub/map.html' %}
-                {% endblock %}
-            </div>
-        </div>
+        <p1> 관련 추천 관광지 </p1>
+        {% include 'detail/detail_sub/recommend.html' %}
+        
     </div>
     <div class="containerC">
         <div>
+            <p class="weather_title" style="width: 870px; justify-content: center;">{{ result.title }}의 날씨</p>
             <div class="weatherList">
-                <p class="weather_title" style="width: 870px; justify-content: center;">{{ result.title }}의 날씨</p>
+                
                 <div style="display: flex; background-color: #f5f8fd;">
                     {% block A %}
                         {% include 'detail/detail_sub/weather.html' %}
@@ -77,8 +76,14 @@
         </div>
     </div>
     <div class="containerD">
-        <p class="weather_title" style="width: 870px; justify-content: center;">추천장소</p>
-                {% include 'detail/detail_sub/recommend.html' %}
+        <div class="map">
+            <p>관광지 위치</p>
+            <div class="maps">
+                {% block body %}
+                {% include 'detail/detail_sub/map.html' %}
+                {% endblock %}
+            </div>
+        </div>
     </div>
 </div>
 </body>
