@@ -15,13 +15,14 @@
 {% include 'header.html' %}
 {% include 'side.html' %}
 <div id="main">
+    {% if record %}
     <div id="my-keyword">
         <h2>나의 키워드</h2>
         <div id="tag-box">
             {% for category in recommend %}
-            <div class="tag">
-                #{{category}}
-            </div>
+                <div class="tag">
+                        {{category}}
+                </div>
             {% endfor %}
         </div>
     </div>
@@ -47,6 +48,11 @@
         </div>
         {% endfor %}
     </div>
+    {% else %}
+    <h1>
+        조회한 내용이 없습니다.
+    </h1>
+    {% endif %}
 </div>
 
 <script src='{% static 'mypage/js/mypage.js' %}'></script>
