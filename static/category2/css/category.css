@@ -1,0 +1,326 @@
+/* Font */
+@font-face {
+  font-family: "LeferiPoint-WhiteA";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteA.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LeferiPoint-BlackObliqueA";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackObliqueA.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  background-color: #f5f8fd;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a5b8d9;
+}
+
+/* Body */
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  top: 0;
+  left: 0;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: inherit;
+}
+
+.body-container {
+  position: relative;
+  display: block;
+  margin: 0 auto auto;
+  border: none;
+  width: 1440px;
+  height: 2400px;
+  left: 0;
+  background-color: #f5f8fd;
+}
+
+/* top-container */
+.top-container {
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  top: 0;
+  left: 0;
+}
+
+.top-container img {
+  width: 100%;
+  filter: brightness(60%);
+}
+
+.tags-container {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56%;
+  height: 6%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 20;
+}
+
+.tags-container .tag {
+  color: #f5f8fd;
+  border-radius: 0px;
+  border: 2px solid #f5f8fd;
+  width: 17%;
+  font-size: 17pt;
+  text-align: center;
+  cursor: pointer;
+  height: 77%;
+  font-family: "LeferiPoint-WhiteA";
+  padding-top: 8px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s;
+}
+
+.tags-container .tag:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  border-radius: 0px;
+  top: 0;
+  left: 0px;
+  z-index: -1;
+  transition: all 0.4s;
+  background-color: #a5b8d9;
+}
+
+.tags-container > .tag:hover {
+  color: #443d35;
+}
+
+.tags-container .tag:hover:after {
+  width: 100%;
+  color: #443d35;
+  z-index: -1;
+}
+
+.tags-container .tag > a {
+  color: white;
+  text-decoration-line: none;
+}
+
+.top-container > h2 {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50pt;
+  color: #443d35;
+  z-index: 20;
+  background-color: #f5f8fd;
+  width: 33%;
+  text-align: center;
+  font-family: "LeferiPoint-BlackObliqueA";
+  padding-top: 25px;
+}
+
+.top-container p {
+  position: absolute;
+  top: 69%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #f5f8fd;
+  font-size: 18pt;
+  z-index: 20;
+  font-family: "LeferiPoint-WhiteA";
+}
+
+/* bottom-container */
+.bottom-container {
+  position: absolute;
+  top: 28%;
+  width: 100%;
+  height: 70%;
+}
+
+.bottom-container p {
+  font-family: "LeferiPoint-WhiteA";
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 15pt;
+}
+
+.bottom-container h2 {
+  font-family: "LeferiPoint-BlackObliqueA";
+  font-size: 30pt;
+  margin-top: 14px;
+}
+
+.bottom-container .theme01 {
+  height: 530px;
+  border-bottom: 1px solid lightgray;
+  background-color: #f5f8fd;
+}
+
+.bottom-container .theme02 {
+  height: 560px;
+  padding-top: 1%;
+  background: white;
+  border-bottom: 1px solid lightgray;
+}
+
+.bottom-container .theme03 {
+  height: 560px;
+  padding-top: 1%;
+  border-bottom: 1px solid lightgray;
+  background-color: #f5f8fd;
+}
+
+.bottom-container .theme04 {
+  height: 560px;
+  padding-top: 1%;
+  background: white;
+  border-bottom: 1px solid lightgray;
+}
+
+.bottom-container .theme05 {
+  height: 560px;
+  padding-top: 1%;
+  border-bottom: 1px solid lightgray;
+  background-color: #f5f8fd;
+}
+
+.bottom-container .inner {
+  display: flex;
+  flex-direction: row;
+  margin: 40px;
+}
+
+.bottom-container .inner .icon-img {
+  /*width: 8%;*/
+  height: 100px;
+}
+
+.bottom-container .inner .title-box {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+}
+
+.bottom-container .inner .title-box > h2 {
+  margin-bottom: 0;
+}
+
+.photo-description {
+  text-align: center;
+  width: 420px;
+  position: absolute;
+  top: 0;
+  height: 270px;
+  color: white;
+  background: rgb(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: 0.6s;
+  border-radius: 15px;
+}
+
+.photo-description:hover {
+  opacity: 1;
+  transition: 1s;
+}
+
+.photo-description > h2 {
+  margin-top: 23%;
+  margin-bottom: 10px;
+}
+
+.photo-description > button {
+  background: transparent;
+  border-radius: 20px;
+  width: 30%;
+  font-size: 14pt;
+  height: 14%;
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+  font-family: "LeferiPoint-WhiteA";
+  padding-top: 7px;
+}
+
+/* Dots */
+.slick-dotted.slick-slider {
+  margin-bottom: 30px;
+}
+
+.slick-dots {
+  width: 20%;
+  margin: 2% auto 0;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+
+  list-style-type: none;
+}
+
+.slick-dots li {
+  margin: 0 0.25rem;
+  cursor: pointer;
+}
+
+.slick-dots li button {
+  line-height: 0;
+
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+
+  border: none;
+  border-radius: 100%;
+  background-color: #cfd3dc;
+
+  text-indent: -9999px;
+}
+.slick-dots li button:hover,
+.slick-dots li button:focus {
+  outline: none;
+}
+
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before {
+  opacity: 1;
+}
+
+li.slick-active button {
+  background-color: #746f6b;
+}
+
+.side_container {
+  width: 0%;
+  height: 100%;
+  position: fixed;
+  transition: all 0.3s;
+  z-index: 1;
+  background: #fff;
+  top: 100px;
+}
+
+.show #side_show {
+  width: 100px;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-top: 100px;
+  position: fixed;
+  z-index: 1;
+}

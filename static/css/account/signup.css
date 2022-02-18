@@ -12,31 +12,12 @@
 }
 
 .wrapper .wrapper-title {
-  margin: 70px auto 20px;
+  margin: 28px auto 15px;
 }
 
-.login input {
-  width: 92%;
-  font-size: 19px;
-  line-height: normal;
-  padding: 10px 12px;
-  height: 31px;
-  border: 1px solid rgba(154, 151, 161, 0.5);
-  border-radius: 5px;
-}
-
-.login input:nth-child(3) {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.login input:nth-child(2) {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
 .signup input {
   width: 92%;
-  font-size: 15px;
+  font-size: 18px;
   line-height: normal;
   padding: 10px;
   height: 29px;
@@ -52,19 +33,12 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-
-.login .btn {
-  margin-top: 28px;
+form .btn {
+  margin: 24px auto 5px;
 }
-
-form .btn:hover {
-  background-color: #746f6b;
-  color: rgb(255, 255, 255);
-}
-
 .social-box {
-  margin: 28px auto;
   width: 100%;
+  margin: 10px auto 0;
 }
 
 .social-box .with-sns {
@@ -95,11 +69,7 @@ form .btn:hover {
   color: #a5a5a5;
 }
 
-.social-box .with-sns .login {
-  letter-spacing: -1.5px;
+.social-box .with-sns .signup {
+  letter-spacing: -1.2px;
   font-size: 16px;
-}
-
-.social-btn ul {
-  margin-top: 24px;
 }
