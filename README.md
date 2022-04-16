@@ -11,8 +11,9 @@ Winter Travel Project는 겨울이라는 계절에 맞는 여행지를 사용자
 
 
 ## 서비스 소개
+
 ### 🪵 메인페이지 :: 실시간,누적 인기 관광지 & 유저별 조회기록을 바탕으로 추천 관광지
-<img width="660" alt="화면 캡처 2022-04-16 160131" src="https://user-images.githubusercontent.com/96044377/163665289-d0abd017-e6f0-447f-bdec-82ce67302744.png"/>
+<img width="660" alt="화면 캡처 2022-04-16 160131" src="https://user-images.githubusercontent.com/96044377/163665373-89fa774f-901c-4ce7-9758-5c9afc2d0018.png">  
 <img width="660" alt="화면 캡처 2022-04-16 154619" src="https://user-images.githubusercontent.com/96044377/163664910-b50f0b7e-554f-4e90-b0ca-224d58eeab76.png"/> 
 
 ### 🪵 카테고리페이지 :: 관광지를 테마별로 구분
